@@ -1,5 +1,9 @@
 # Fast Recipes
 
+### Vision Statement
+
+FOR college students, working professionals, and individuals WHO are interested in affordable cooking ideas. THE Fast Recipes tool is a cooking command line interface, with a future goal of adding a front-end infrastructure, THAT provides users with a list of various recipes based on the given ingredients that they provide. Fast Recipes takes away the difficult process of scouring the interent for the perfect recipe and gives the user a curated list of ideas from an input of ingredients, budget, and food categories. UNLIKE other recipe tools, OUR product uses a database that pools resources from the best recipes customized to the individual user's personal goals. 
+
 ## Project Relevance
 This project covers the following topics: Object Oriented Language, Test Driven Development, Multi-Threading, Unified Modeling Language (UML), Design Patterns, Debugging Code Profiling and Organization, On-the-Fly Coding, Access to Database, and Graphical User Interface (Maybe).
 
