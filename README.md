@@ -43,3 +43,9 @@ Nick Castaldo Persona:
 
 ### Pam, a single nurse and mother
 Pam, age 34, is a nurse in Austin, Texas . She has two children aged, 8 and 5. She is a single mother taking care of her two children on her own working long hours at her nursing job. After working a 12 hour day with an hour long commute in city traffic, she picks her kids up from daycare and takes them home to prepare dinner. She wants to stay on top of her budget and she can't afford to have them eat out every day. She uses her smart phone everyday and her kids play games on their tablets. She would like to be able to diversify the meals she cooks for her kids, but with all the stress of work and family she doesn't have time to scour the internet for various recipes. She would like to have an easy, curated way to access a broad variety of healthy, simple, and afforable recipes.
+
+### Daniel:
+Daniel, age 29, is a military veteran who has returned to school to earn bachelor’s in business administration to improve his career prospects. His wife Danielle is in school to become a physician. They recently moved to Boston so she can start at Harvard Medical School. Neither have ever cooked consistently and they spend too much of his GI Bill on fast food and eating out to make ends meet in their new city. To save money Daniel has taken to doing the shopping on the weekend and preparing meals for the week but is exasperated by the process of finding meals that fit both of their preferences.
+Danielle purchased him a cookbook from their favorite recipe website for his birthday and he has enjoyed making meals from it. Now Daniel is hoping to use FastRecipes to further his burgeoning interest in cooking. He has some limited experience with technology having grown up without a smart phone and a limited dial-up internet. He hopes this new application will be simple enough to enable him to keep the food cost down for his small family.
+
+
