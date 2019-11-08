@@ -1,9 +1,10 @@
-# Fast Fecipes
+# Fast Recipes
 
-## Project Description 
+## Project Relevance
+This project covers the following topics: Object Oriented Language, Test Driven Development, Multi-Threading, Unified Modeling Language (UML), Design Patterns, Debugging Code Profiling and Organization, On-the-Fly Coding, Access to Database, and Graphical User Interface (Maybe).
 
-TODO
-
+## Project Abstract
+My project proposal is an application that randomly chooses food recipes called FastRecipes. The application lets you choose if you would like a breakfast, lunch, dinner, or a snack recipe. The idea is to have a client/server application, where the client can request recipes from the database server. I would like to program this in C++, Python, or Java; preferably C++ or Python. And, I believe that this project reaches the educational goals.
 
 ## Personas
 
