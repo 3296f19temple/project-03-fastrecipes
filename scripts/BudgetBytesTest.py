@@ -157,7 +157,6 @@ def write_recipe_to_file(fileName, recipe):
             i = i + 1
         f.write("\n---\n")
 
-
 # Test Code
 webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
 # fetch webpage
@@ -171,7 +170,5 @@ recipe = Recipe()
 # fill its contents
 get_recipe_contents(soup, recipe)
 recipe.url = webpage
-#with open("recipe.yaml", 'w') as file:
-#    yaml.dump(recipe.__dict__, file)
-print("wrote file!")
-
+# write recipe to file
+write_recipe_to_file("recipes.dat", recipe)
