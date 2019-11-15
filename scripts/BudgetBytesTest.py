@@ -162,6 +162,7 @@ def write_recipe_to_file(fileName, recipe):
 webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
 # fetch webpage
 res = requests.get(webpage)
+res.raise_for_status()
 html_string = res.text
 # Get beautiful soup parser
 soup = bs4.BeautifulSoup(html_string, 'html.parser')
