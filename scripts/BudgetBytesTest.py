@@ -171,7 +171,7 @@ recipe = Recipe()
 # fill its contents
 get_recipe_contents(soup, recipe)
 recipe.url = webpage
-with open("recipe.yaml", 'w') as file:
-    yaml.dump(recipe.__dict__, file)
-    print("wrote file!")
+#with open("recipe.yaml", 'w') as file:
+#    yaml.dump(recipe.__dict__, file)
+print("wrote file!")
 
