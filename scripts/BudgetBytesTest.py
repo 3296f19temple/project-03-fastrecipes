@@ -127,9 +127,9 @@ def get_recipe_contents(soup, recipe):
 def validate_recipe(recipe):
     if recipe.ingredients == []:
         return False
-    if recipe.instructions = []:
+    if recipe.instructions == []:
         return False
-    if recipe.name = "n/a":
+    if recipe.name == "n/a":
         return False
     return True
 
@@ -185,4 +185,5 @@ recipe.url = webpage
 if validate_recipe(recipe):
     # write recipe to file
     write_recipe_to_file("recipes.dat", recipe)
+    
 
