@@ -72,8 +72,8 @@ int insertRecipe(Recipe recipe) {
 		con->setSchema(schema.c_str());
 
 		pstmt = con->prepareStatement("\
-			INSERT INTO recipe\
-			VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
+			INSERT INTO recipe VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
+
 		if (recipe.recipe_name.compare("") == 0) {
 			pstmt->setNull(1, sql::DataType::VARCHAR);
 		}
@@ -122,7 +122,6 @@ int insertRecipe(Recipe recipe) {
 		cout << "# ERR: " << e.what();
 		cout << ", SQLState: " << e.getSQLState().c_str() << " )" << endl;
 	}
-	cout << endl;
 	return 0;
 }
 

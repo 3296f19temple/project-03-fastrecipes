@@ -12,7 +12,7 @@ struct Recipe {
 };
 
 struct step {
-	std::string instruction;
+	sql::SQLString instruction;
 	int step_number;
 };
 
