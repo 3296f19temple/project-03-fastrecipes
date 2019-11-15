@@ -26,8 +26,9 @@ html_string = res.text
 | soup.select('div span')    | All elements named `<span>` that are within element named `<div>` |
 | soup.select('input[name]') | All elements named `<input>` that have a `name` attr w/ any value |
 
-## Example HTML Parsing
-
-```Python
-
-```
+## Useful Links
+- [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Automate The Boring Stuff With Python: Web Scraping](https://automatetheboringstuff.com/chapter11/)
+  - I got the above chart from this page.
+  - This gives a nice, practical explaination for how to webscrape,
+    and also has serveral examples
