@@ -4,13 +4,14 @@
 # classes, which make it easy to separate ingredient names, 
 # amounts, and units of each amount. 
 
-# To figure out how to parse the html tree of a website to extract the
-# information you want, I recomend using the "inspect element" feature
-# built-in to firefox. To use this, right-click on the relevant
-# text/region on the page, and the firefox debugger will pop up,
-# high-lighting the relevant portion of the html. Inside the debugger,
-# you can also mouse over a portion of the html, and the relevant
-# region in the webpage will be high-lighted as well.
+# To figure out how to parse the html tree of a website to
+# extract the information you want, I recomend using the
+# "inspect element" feature built-in to firefox. To use this,
+# right-click on the relevant text/region on the page, and the
+# firefox debugger will pop up, high-lighting the relevant
+# portion of the html. Inside the debugger, you can also mouse
+# over a portion of the html, and the relevant region in the
+# webpage will be high-lighted as well.
 
 import bs4 
 import requests 
