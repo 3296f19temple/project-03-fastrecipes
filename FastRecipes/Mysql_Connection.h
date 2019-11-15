@@ -3,12 +3,6 @@
 #include <cppconn/sqlstring.h>
 #include <vector>
 
-struct FullRecipe {
-	Recipe_Table recipe;
-	std::vector<Step_Table> steps;
-	std::vector<Ingredient> ingredients;
-};
-
 struct Recipe_Table {
 	sql::SQLString recipe_name;
 	sql::SQLString url;
@@ -27,6 +21,12 @@ struct Step_Table {
 struct Ingredient {
 	sql::SQLString ingredient_name;
 	int quantity;
+};
+
+struct Full_Recipe {
+	Recipe_Table recipe;
+	std::vector<Step_Table> steps;
+	std::vector<Ingredient> ingredients;
 };
 
 int getRecipe(sql::SQLString rname);
