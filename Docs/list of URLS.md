@@ -15,21 +15,21 @@
 
 ## BudgetBytes
 
-https://www.budgetbytes.com/post-sitemap1.xml
-https://www.budgetbytes.com/post-sitemap2.xml
+- https://www.budgetbytes.com/post-sitemap1.xml
+- https://www.budgetbytes.com/post-sitemap2.xml
 
 ## SkinnyTaste
 
-https://www.skinnytaste.com/post-sitemap1.xml
-https://www.skinnytaste.com/post-sitemap2.xml
+- https://www.skinnytaste.com/post-sitemap1.xml
+- https://www.skinnytaste.com/post-sitemap2.xml
 
 ## PickledPlum
 
-https://pickledplum.com/page-sitemap.xml
+- https://pickledplum.com/page-sitemap.xml
 
 ## Pillsbury
 
-https://www.pillsbury.com/recipe.xml
+- https://www.pillsbury.com/recipe.xml
 
 
 
