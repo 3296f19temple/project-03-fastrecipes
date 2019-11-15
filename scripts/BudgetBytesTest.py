@@ -124,6 +124,16 @@ def get_recipe_contents(soup, recipe):
     get_recipe_servings(soup, recipe)
 
 
+def validate_recipe(recipe):
+    if recipe.ingredients == []:
+        return False
+    if recipe.instructions = []:
+        return False
+    if recipe.name = "n/a":
+        return False
+    return True
+
+
 def write_recipe_to_file(fileName, recipe):
     with open(fileName, 'w') as f:
         f.write("name: ")
@@ -157,6 +167,8 @@ def write_recipe_to_file(fileName, recipe):
             i = i + 1
         f.write("\n---\n")
 
+
+
 # Test Code
 webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
 # fetch webpage
@@ -170,5 +182,7 @@ recipe = Recipe()
 # fill its contents
 get_recipe_contents(soup, recipe)
 recipe.url = webpage
-# write recipe to file
-write_recipe_to_file("recipes.dat", recipe)
+if validate_recipe(recipe):
+    # write recipe to file
+    write_recipe_to_file("recipes.dat", recipe)
+
