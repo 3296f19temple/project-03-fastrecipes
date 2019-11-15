@@ -15,31 +15,6 @@
 import bs4 
 import requests 
 
-webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
-
-# fetch webpage
-res = requests.get(webpage)
-html_string = res.text
-
-soup = bs4.BeautifulSoup(html_string, 'html.parser')
-top_elements = soup.select('.wprm-recipe-ingredient')
-
-for top_element in top_elements:
-    children = top_element.children
-    for child in children:
-        if isinstance(child, str):
-            continue
-        current_class = child['class'][0]
-        # do comparison here
-        if current_class == 'wprm-recipe-ingredient-amount':
-            print("\tingredient amount: ", child.text)
-        elif current_class == 'wprm-recipe-ingredient-unit':
-            print("\tingredient unit: ", child.text)
-        elif current_class == 'wprm-recipe-ingredient-name':
-            print("\tingredient name: ", child.text)
-    print()
-
-
 class Recipe:
     def __init__(self):
         self.name = "n/a"
@@ -49,7 +24,7 @@ class Recipe:
         self.total_time = "n/a"
         self.num_servings = "n/a"
         self.ingredients = []
-        self.instructions = ""
+        self.instructions = []
 
 
 class Ingredient:
@@ -57,3 +32,44 @@ class Ingredient:
         self.amount = "n/a"
         self.unit = "n/a"
         self.name = "n/a"
+
+
+def get_recipe_name
+
+def get_recipe_ingredients(soup, Recipe):
+    soup.select('.wprm-recipe-ingredient')
+    top_elements = soup.select('.wprm-recipe-ingredient')
+    for top_element in top_elements:
+        children = top_element.children
+        ingredient = Ingredient()
+        for child in children:
+            if isinstance(child, str):
+                continue
+            current_class = child['class'][0]
+            # do comparison here
+            if current_class == 'wprm-recipe-ingredient-amount':
+                ingredient.amount = child.text
+                #print("\tingredient amount: ", child.text)
+            elif current_class == 'wprm-recipe-ingredient-unit':
+                ingredient.unit = child.text
+                #print("\tingredient unit: ", child.text)
+            elif current_class == 'wprm-recipe-ingredient-name':
+                ingredient.name = child.text
+                #print("\tingredient name: ", child.text)
+        Recipe.ingredients.append(ingredient)
+
+
+# Test Code
+webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
+# fetch webpage
+res = requests.get(webpage)
+html_string = res.text
+
+soup = bs4.BeautifulSoup(html_string, 'html.parser')
+recipe = Recipe()
+get_ingredients(soup, recipe)
+for ingredient in recipe.ingredients:
+    print(ingredient.name)
+    print(ingredient.amount)
+    print(ingredient.unit)
+    print()
