@@ -1,17 +1,17 @@
 ## URLs for convenient web scraping
 
-# Websites with wprm tags
+### Websites with wprm tags
 
-budgetbytes.com
-skinnytaste.com
-cookdpro.com/
+- budgetbytes.com
+- skinnytaste.com
+- cookdpro.com/
 
-# websites with delineated ingredient lists
+### Websites with delineated ingredient lists
 
-pickledplum.com
-pillsbury.com/
+- pickledplum.com
+- pillsbury.com/
 
-# Full list of recipe URLs
+## Full list of recipe URLs
 
 ## BudgetBytes
 
@@ -23,11 +23,11 @@ https://www.budgetbytes.com/post-sitemap2.xml
 https://www.skinnytaste.com/post-sitemap1.xml
 https://www.skinnytaste.com/post-sitemap2.xml
 
-#P ickledPlum
+## PickledPlum
 
 https://pickledplum.com/page-sitemap.xml
 
-# Pillsbury
+## Pillsbury
 
 https://www.pillsbury.com/recipe.xml
 
