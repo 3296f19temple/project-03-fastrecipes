@@ -34,4 +34,4 @@
    sub-heading in the `Linker` section. 
 8. You will need to enter **ALL** of the following into the
    **Additional Dependencies** section:
-   - `libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppcon8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;`
+   - `libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;`
