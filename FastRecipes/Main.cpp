@@ -3,7 +3,10 @@
 
 #include <iostream>
 
+#include "Mysql_Connection.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+	Mysql_Connection_Tester();
+	return 0;
 }

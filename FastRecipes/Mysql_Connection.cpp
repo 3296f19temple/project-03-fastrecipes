@@ -17,6 +17,8 @@ const sql::SQLString schema = "fast_recipes";
 using namespace std;
 
 int getRecipe(sql::SQLString rname) {
+	
+	cout << endl;
 
 	sql::Driver* driver = nullptr;
 	sql::Connection* con = nullptr;
@@ -50,7 +52,7 @@ int getRecipe(sql::SQLString rname) {
 	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")";
+		cout << "(" << __FUNCTION__ ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete res;
@@ -102,7 +104,7 @@ int insertRecipe(Recipe_Table recipe) {
 	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")";
+		cout << "(" << __FUNCTION__ ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete pstmt;
@@ -174,13 +176,14 @@ int insertStep(Step_Table step) {
 	} 
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")";
+		cout << "(" << __FUNCTION__ ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete pstmt;
 		delete con;
 		return 1;
 	}
+	return 0;
 }
 
 void Mysql_Connection_Tester() {
