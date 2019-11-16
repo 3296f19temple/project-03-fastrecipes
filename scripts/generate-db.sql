@@ -27,21 +27,45 @@ CREATE TABLE recipe_has_ingredient (
     CONSTRAINT fk_recipe_ingredient FOREIGN KEY	(recipe_name) REFERENCES recipe(recipe_name));
 
 DELIMITER $$
-CREATE PROCEDURE insert_recipe (
+CREATE PROCEDURE insert_recipe(
 	IN new_recipe_name VARCHAR(255),
-    IN new_url VARCHAR(2047),
+	IN new_url VARCHAR(2047),
     IN new_category VARCHAR(63),
 	IN new_prep_time INT,
 	IN new_cook_time INT,
 	IN new_serving_count INT)
 BEGIN
-    INSERT INTO recipe
+INSERT INTO recipe
     SELECT new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count
     FROM dual
     WHERE NOT EXISTS (
 		SELECT *
         FROM recipe
         WHERE recipe_name = new_recipe_name);
+END$$
+
+CREATE PROCEDURE insert_step(
+    IN new_recipe_name VARCHAR(255),
+    IN new_step_number INT,
+    IN new_instruction TEXT)
+BEGIN
+INSERT INTO step
+VALUES (new_recipe_name, new_step_number, new_instruction);
+END$$
+
+CREATE PROCEDURE insert_recipe_ingredient(
+	IN new_recipe_name VARCHAR(255),
+    IN new_ingredient_name VARCHAR(255),
+    IN new_quantity DECIMAL(6,2),
+    IN new_unit VARCHAR(255))
+BEGIN
+INSERT INTO recipe_ingredient
+	SELECT new_recipe_name, new_ingredient_name, new_quantity, new_unit
+    FROM dual
+    WHERE NOT EXISTS (
+		SELECT *
+        FROM recipe
+        WHERE recipe_name = new_recipe_name AND ingredient_name = new_ingredient_name);
 END$$
 DELIMITER ;
 
