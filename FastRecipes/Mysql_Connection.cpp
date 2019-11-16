@@ -16,8 +16,8 @@ const sql::SQLString schema = "fast_recipes";
 
 using namespace std;
 
-int getRecipe(sql::SQLString rname) {
-	
+void getRecipe(sql::SQLString rname) {
+
 	cout << endl;
 
 	sql::Driver* driver = nullptr;
@@ -33,7 +33,7 @@ int getRecipe(sql::SQLString rname) {
 			SELECT recipe_name, category, prep_time, cook_time, serving_count\
 			FROM recipe\
 			WHERE recipe_name = ?");
-			
+
 		pstmt->setString(1, rname);
 
 		res = pstmt->executeQuery();
@@ -52,20 +52,16 @@ int getRecipe(sql::SQLString rname) {
 	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")" << endl;
+		cout << "(" << __FUNCTION__ << ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete res;
 		delete pstmt;
 		delete con;
-		return 1;
 	}
-
-
-	return 0;
 }
 
-int insertRecipe(Recipe_Table recipe) {
+void insertRecipeTable(Recipe_Table recipe) {
 
 	sql::Driver* driver = nullptr;
 	sql::Connection* con = nullptr;
@@ -76,8 +72,7 @@ int insertRecipe(Recipe_Table recipe) {
 		con = driver->connect(server, user, password);
 		con->setSchema(schema);
 
-		pstmt = con->prepareStatement("INSERT INTO recipe\
-			VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
+		pstmt = con->prepareStatement("CALL insert_recipe(?,?,?,?,?,?)");
 
 		recipe.recipe_name.compare("") == 0 ?
 			pstmt->setNull(1, sql::DataType::VARCHAR) :
@@ -104,19 +99,15 @@ int insertRecipe(Recipe_Table recipe) {
 	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")" << endl;
+		cout << "(" << __FUNCTION__ << ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete pstmt;
 		delete con;
-		return 1;
 	}
-
-
-	return 0;
 }
 
-int insertIngredient(sql::SQLString ingredient) {
+void insertIngredientTable(sql::SQLString recipe_name, Recipe_Ingredient_Table ingredient) {
 
 	sql::Driver* driver = nullptr;
 	sql::Connection* con = nullptr;
@@ -127,12 +118,20 @@ int insertIngredient(sql::SQLString ingredient) {
 		con = driver->connect(server, user, password);
 		con->setSchema(schema);
 
-		pstmt = con->prepareStatement("INSERT INTO ingredient\
-		VALUES (DEFAULT, ?)");
+		pstmt = con->prepareStatement("CALL insert_recipe_ingredient(?,?,?,?)");
 
-		ingredient.compare("") == 0 ?
+		recipe_name.compare("") == 0 ?
 			pstmt->setNull(1, sql::DataType::VARCHAR) :
-			pstmt->setString(1, ingredient);
+			pstmt->setString(1, recipe_name);
+		ingredient.ingredient_name.compare("") == 0 ?
+			pstmt->setNull(2, sql::DataType::VARCHAR) :
+			pstmt->setString(2, ingredient.ingredient_name);
+		ingredient.quantity == NULL ?
+			pstmt->setNull(3, sql::DataType::INTEGER) :
+			pstmt->setInt(3, ingredient.quantity);
+		ingredient.unit.compare("") == 0 ?
+			pstmt->setNull(4, sql::DataType::VARCHAR) :
+			pstmt->setString(4, ingredient.ingredient_name);
 
 		pstmt->execute();
 		delete pstmt;
@@ -140,17 +139,15 @@ int insertIngredient(sql::SQLString ingredient) {
 	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")";
+		cout << "(" << __FUNCTION__ << ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete pstmt;
 		delete con;
-		return 1;
 	}
-	return 0;
 }
 
-int insertStep(Step_Table step) {
+void insertStepTable(sql::SQLString recipe_name, Step_Table step) {
 	sql::Driver* driver = nullptr;
 	sql::Connection* con = nullptr;
 	sql::PreparedStatement* pstmt = nullptr;
@@ -160,40 +157,52 @@ int insertStep(Step_Table step) {
 		con = driver->connect(server, user, password);
 		con->setSchema(schema);
 
-		pstmt = con->prepareStatement("INSERT INTO recipe\
-			VALUES (DEFAULT, ?, ?)");
+		pstmt = con->prepareStatement("CALL insert_step(?,?,?)");
 
-		step.instruction.compare("") == 0 ?
+		recipe_name.compare("") == 0 ?
 			pstmt->setNull(1, sql::DataType::VARCHAR) :
-			pstmt->setString(1, step.instruction);
+			pstmt->setString(1, recipe_name);
 		step.step_number == NULL ?
 			pstmt->setNull(2, sql::DataType::INTEGER) :
 			pstmt->setInt(2, step.step_number);
+		step.instruction.compare("") == 0 ?
+			pstmt->setNull(3, sql::DataType::VARCHAR) :
+			pstmt->setString(3, step.instruction);
+
 
 		pstmt->execute();
 		delete pstmt;
 		delete con;
-	} 
+	}
 	catch (sql::SQLException & e) {
 		cout << "# ERR: SQLException in " << __FILE__;
-		cout << "(" << __FUNCTION__ ")" << endl;
+		cout << "(" << __FUNCTION__ << ")" << endl;
 		cout << "# ERR: " << e.what();
 		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
 		delete pstmt;
 		delete con;
-		return 1;
 	}
-	return 0;
+}
+
+void insertRecipe(Recipe recipe) {
+
+	insertRecipeTable(recipe.recipe);
+	for (Step_Table table : recipe.steps) {
+		insertStepTable(recipe.recipe.recipe_name, table);
+	}
+	for (Recipe_Ingredient_Table ingredient : recipe.ingredients) {
+		insertIngredientTable(recipe.recipe.recipe_name, ingredient);
+	}
 }
 
 void Mysql_Connection_Tester() {
-	Recipe_Table recipe = {};
-	recipe.recipe_name = "toast";
-	recipe.category = "breakfast";
-	recipe.prep_time = 2;
-	recipe.cook_time = 5;
-	recipe.serving_count = 2;
+	Recipe_Table rt = { "scrambled eggs", "", "breakfast", 10, 10, 2 };
+	Step_Table st1 = { 1, "break eggs and scramble" };
+	Step_Table st2 = { 2, "fry in pan" };
+	Recipe_Ingredient_Table rit1 = { "egg", 2, "eggs" };
+	Recipe_Ingredient_Table rit2 = { "salt", 0.25, "tsp" };
+	
+	Recipe recipe = { rt, {st1, st2}, {rit1, rit2} };
 
 	insertRecipe(recipe);
-	getRecipe(recipe.recipe_name);
 }

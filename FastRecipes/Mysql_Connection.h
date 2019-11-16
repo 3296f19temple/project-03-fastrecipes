@@ -13,26 +13,22 @@ struct Recipe_Table {
 };
 
 struct Step_Table {
-	sql::SQLString instruction;
 	int step_number;
-	sql::SQLString ingredient_unit;
+	sql::SQLString instruction;
 };
 
-struct Ingredient {
+struct Recipe_Ingredient_Table {
 	sql::SQLString ingredient_name;
 	int quantity;
+	sql::SQLString unit;
 };
 
-struct Full_Recipe {
+struct Recipe {
 	Recipe_Table recipe;
 	std::vector<Step_Table> steps;
-	std::vector<Ingredient> ingredients;
+	std::vector<Recipe_Ingredient_Table> ingredients;
 };
 
-int getRecipe(sql::SQLString rname);
-
-int insertRecipe(Recipe_Table recipe);
-
-int insertIngredient(sql::SQLString ingredient);
+void insertRecipe(Recipe recipe);
 
 void Mysql_Connection_Tester();
