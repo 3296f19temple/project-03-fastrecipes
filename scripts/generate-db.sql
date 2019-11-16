@@ -36,12 +36,15 @@ CREATE PROCEDURE insert_recipe(
 	IN new_serving_count INT)
 BEGIN
 INSERT INTO recipe
+VALUES (new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count);
+/* // Using this method would prevent attempting to insert a duplicate record
     SELECT new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count
     FROM dual
     WHERE NOT EXISTS (
 		SELECT *
         FROM recipe
         WHERE recipe_name = new_recipe_name);
+*/
 END$$
 
 CREATE PROCEDURE insert_step(
@@ -51,6 +54,14 @@ CREATE PROCEDURE insert_step(
 BEGIN
 INSERT INTO step
 VALUES (new_recipe_name, new_step_number, new_instruction);
+/* // Using this method would prevent attempting to insert a duplicate record
+    SELECT new_recipe_name, new_step_number, new_instruction
+    FROM dual
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM step
+        WHERE recipe_name = new_recipe_name AND step_number = new_step_number);
+*/
 END$$
 
 CREATE PROCEDURE insert_ingredient(
@@ -60,17 +71,23 @@ CREATE PROCEDURE insert_ingredient(
     IN new_unit VARCHAR(255))
 BEGIN
 INSERT INTO ingredient
+VALUES (new_recipe_name, new_ingredient_name, new_quantity, new_unit);
+/* // Using this method would prevent attempting to insert a duplicate record
 	SELECT new_recipe_name, new_ingredient_name, new_quantity, new_unit
     FROM dual
 	WHERE NOT EXISTS (
 		SELECT *
         FROM ingredient
         WHERE recipe_name = new_recipe_name AND ingredient_name = new_ingredient_name);
+*/
 END$$
 
 CREATE PROCEDURE delete_recipe(
-	IN recipe_name VARCHAR(255))
+    IN del_recipe_name VARCHAR(255))
 BEGIN
+    DELETE FROM recipe WHERE recipe_name = del_recipe_name;
+END$$
+
 DELIMITER ;
 
 # DROP SCHEMA fast_recipes;
