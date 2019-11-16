@@ -71,6 +71,93 @@
     <ClInclude Include="x64\Debug\include\cppconn\warning.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\xapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\xdevapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collection_crud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\crud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\executable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_charsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_collations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\row.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\table_crud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\crud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\row.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\op_if.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x64\Debug\include\mysqlx\common\value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Mysql_Connection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -112,11 +199,12 @@
     <None Include="x64\Release\FastRecipes.tlog\link.command.1.tlog" />
     <None Include="x64\Release\FastRecipes.tlog\link.delete.1.tlog" />
     <None Include="x64\Release\FastRecipes.tlog\link.read.1.tlog" />
+    <None Include="x64\Release\libcrypto-1_1-x64.dll" />
+    <None Include="x64\Release\libssl-1_1-x64.dll" />
+    <None Include="x64\Release\mysqlcppconn-7-vs14.dll" />
+    <None Include="x64\Release\mysqlcppconn8-2-vs14.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="x64\Debug\FastRecipes.Build.CppClean.log" />
-    <Text Include="x64\Debug\FastRecipes.log" />
-    <Text Include="x64\Debug\FastRecipes.vcxproj.FileListAbsolute.txt" />
     <Text Include="x64\Release\FastRecipes.log" />
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,24 @@ CREATE TABLE ingredient (
     CONSTRAINT pk_ingredient PRIMARY KEY (recipe_name, ingredient_name),
     CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
+DROP PROCEDURE get_recipe_table;
+
 DELIMITER $$
+CREATE PROCEDURE get_recipe_table (IN get_recipe_name VARCHAR(255))
+BEGIN
+    DECLARE recipe_name VARCHAR(255);
+    DECLARE url VARCHAR(2047);
+    DECLARE category VARCHAR(63);
+	DECLARE prep_time INT;
+	DECLARE cook_time INT;
+	DECLARE serving_count INT;
+
+    SELECT recipe_name, url, category, prep_time, cook_time, serving_count
+    INTO recipe_name, url, category, prep_time, cook_time, serving_count
+    FROM recipe
+    WHERE recipe_name = get_recipe_name;
+END $$
+
 CREATE PROCEDURE insert_recipe(
 	IN new_recipe_name VARCHAR(255),
 	IN new_url VARCHAR(2047),
@@ -87,7 +104,6 @@ CREATE PROCEDURE delete_recipe(
 BEGIN
     DELETE FROM recipe WHERE recipe_name = del_recipe_name;
 END$$
-
 DELIMITER ;
 
 # DROP SCHEMA fast_recipes;

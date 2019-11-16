@@ -145,12 +145,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Mango\OneDrive - Temple University\Fall 2019\CIS 3296 03\project-03-fastrecipes\FastRecipes\x64\Debug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\Mango\OneDrive - Temple University\Fall 2019\CIS 3296 03\project-03-fastrecipes\FastRecipes\x64\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -175,6 +178,35 @@
     <ClInclude Include="x64\Debug\include\cppconn\variant.h" />
     <ClInclude Include="x64\Debug\include\cppconn\version_info.h" />
     <ClInclude Include="x64\Debug\include\cppconn\warning.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\api.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\error.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\op_if.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\settings.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\util.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common\value.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\common_constants.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collations.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collection_crud.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\common.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\crud.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\crud.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\error.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\result.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\row.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\session.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\settings.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\document.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\error.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\executable.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_charsets.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_collations.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\result.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\row.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\settings.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\devapi\table_crud.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\xapi.h" />
+    <ClInclude Include="x64\Debug\include\mysqlx\xdevapi.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".vs\FastRecipes\v16\Browse.VC.db" />
@@ -212,12 +244,13 @@
     <None Include="x64\Release\FastRecipes.tlog\link.delete.1.tlog" />
     <None Include="x64\Release\FastRecipes.tlog\link.read.1.tlog" />
     <None Include="x64\Release\FastRecipes.tlog\link.write.1.tlog" />
+    <None Include="x64\Release\libcrypto-1_1-x64.dll" />
+    <None Include="x64\Release\libssl-1_1-x64.dll" />
+    <None Include="x64\Release\mysqlcppconn-7-vs14.dll" />
+    <None Include="x64\Release\mysqlcppconn8-2-vs14.dll" />
     <None Include="x64\Release\vc142.pdb" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="x64\Debug\FastRecipes.Build.CppClean.log" />
-    <Text Include="x64\Debug\FastRecipes.log" />
-    <Text Include="x64\Debug\FastRecipes.vcxproj.FileListAbsolute.txt" />
     <Text Include="x64\Release\FastRecipes.log" />
   </ItemGroup>
   <ItemGroup>
