@@ -19,12 +19,12 @@ struct Step_Table {
 
 struct Recipe_Ingredient_Table {
 	sql::SQLString ingredient_name;
-	int quantity;
+	double quantity;
 	sql::SQLString unit;
 };
 
 struct Recipe {
-	Recipe_Table recipe;
+	Recipe_Table recipe_table;
 	std::vector<Step_Table> steps;
 	std::vector<Recipe_Ingredient_Table> ingredients;
 };

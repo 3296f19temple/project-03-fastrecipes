@@ -16,7 +16,7 @@ VALUES
     ('cake', 4, 'pour into cake pan'),
     ('cake', 5, 'bake for one hour at 375');
 
-INSERT INTO recipe_ingredient
+INSERT INTO ingredient
 VALUES
 	('steak', 'steak', 1, 'steak'),
     ('steak', 'salt', 3, 'tsps'),

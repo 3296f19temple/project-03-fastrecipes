@@ -118,7 +118,7 @@ void insertIngredientTable(sql::SQLString recipe_name, Recipe_Ingredient_Table i
 		con = driver->connect(server, user, password);
 		con->setSchema(schema);
 
-		pstmt = con->prepareStatement("CALL insert_recipe_ingredient(?,?,?,?)");
+		pstmt = con->prepareStatement("CALL insert_ingredient(?,?,?,?)");
 
 		recipe_name.compare("") == 0 ?
 			pstmt->setNull(1, sql::DataType::VARCHAR) :
@@ -127,8 +127,8 @@ void insertIngredientTable(sql::SQLString recipe_name, Recipe_Ingredient_Table i
 			pstmt->setNull(2, sql::DataType::VARCHAR) :
 			pstmt->setString(2, ingredient.ingredient_name);
 		ingredient.quantity == NULL ?
-			pstmt->setNull(3, sql::DataType::INTEGER) :
-			pstmt->setInt(3, ingredient.quantity);
+			pstmt->setNull(3, sql::DataType::DOUBLE) :
+			pstmt->setDouble(3, ingredient.quantity);
 		ingredient.unit.compare("") == 0 ?
 			pstmt->setNull(4, sql::DataType::VARCHAR) :
 			pstmt->setString(4, ingredient.ingredient_name);
@@ -186,12 +186,12 @@ void insertStepTable(sql::SQLString recipe_name, Step_Table step) {
 
 void insertRecipe(Recipe recipe) {
 
-	insertRecipeTable(recipe.recipe);
+	insertRecipeTable(recipe.recipe_table);
 	for (Step_Table table : recipe.steps) {
-		insertStepTable(recipe.recipe.recipe_name, table);
+		insertStepTable(recipe.recipe_table.recipe_name, table);
 	}
 	for (Recipe_Ingredient_Table ingredient : recipe.ingredients) {
-		insertIngredientTable(recipe.recipe.recipe_name, ingredient);
+		insertIngredientTable(recipe.recipe_table.recipe_name, ingredient);
 	}
 }
 

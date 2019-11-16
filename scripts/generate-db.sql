@@ -12,19 +12,19 @@ CREATE TABLE recipe (
     CONSTRAINT pk_recipe PRIMARY KEY (recipe_name));
 
 CREATE TABLE step (
-    recipe_name INT NOT NULL,
+    recipe_name VARCHAR(255) NOT NULL,
 	step_number INT NOT NULL,
     instruction TEXT,
     CONSTRAINT pk_step PRIMARY KEY (recipe_name, step_number),
-    CONSTRAINT fk_step_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name));
+    CONSTRAINT fk_step_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
-CREATE TABLE recipe_has_ingredient (
+CREATE TABLE ingredient (
 	recipe_name VARCHAR(255) NOT NULL,
     ingredient_name VARCHAR(255) NOT NULL,
     quantity NUMERIC(6, 2),
     unit VARCHAR(65),
-    CONSTRAINT pk_recipe_has_ingredient PRIMARY KEY (recipe_name, ingredient_name),
-    CONSTRAINT fk_recipe_ingredient FOREIGN KEY	(recipe_name) REFERENCES recipe(recipe_name));
+    CONSTRAINT pk_ingredient PRIMARY KEY (recipe_name, ingredient_name),
+    CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
 DELIMITER $$
 CREATE PROCEDURE insert_recipe(
@@ -53,21 +53,24 @@ INSERT INTO step
 VALUES (new_recipe_name, new_step_number, new_instruction);
 END$$
 
-CREATE PROCEDURE insert_recipe_ingredient(
+CREATE PROCEDURE insert_ingredient(
 	IN new_recipe_name VARCHAR(255),
     IN new_ingredient_name VARCHAR(255),
     IN new_quantity DECIMAL(6,2),
     IN new_unit VARCHAR(255))
 BEGIN
-INSERT INTO recipe_ingredient
+INSERT INTO ingredient
 	SELECT new_recipe_name, new_ingredient_name, new_quantity, new_unit
     FROM dual
-    WHERE NOT EXISTS (
+	WHERE NOT EXISTS (
 		SELECT *
-        FROM recipe
+        FROM ingredient
         WHERE recipe_name = new_recipe_name AND ingredient_name = new_ingredient_name);
 END$$
-DELIMITER ;
 
+CREATE PROCEDURE delete_recipe(
+	IN recipe_name VARCHAR(255))
+BEGIN
+DELIMITER ;
 
 # DROP SCHEMA fast_recipes;
