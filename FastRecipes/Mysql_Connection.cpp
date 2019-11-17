@@ -310,5 +310,5 @@ void Mysql_Connection_Tester() {
 		cout << "Ingredient.unit: " << ingredient.unit.c_str() << endl;
 	}
 
-	// deleteRecipe(rr.recipe_name);
+	deleteRecipe(rr.recipe_name);
 }
