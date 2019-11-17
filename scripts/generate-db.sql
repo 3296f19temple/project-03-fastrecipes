@@ -26,23 +26,27 @@ CREATE TABLE ingredient (
     CONSTRAINT pk_ingredient PRIMARY KEY (recipe_name, ingredient_name),
     CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
-DROP PROCEDURE get_recipe_table;
-
 DELIMITER $$
-CREATE PROCEDURE get_recipe_table (IN get_recipe_name VARCHAR(255))
+CREATE PROCEDURE get_recipe_record (IN get_recipe_name VARCHAR(255))
 BEGIN
-    DECLARE recipe_name VARCHAR(255);
-    DECLARE url VARCHAR(2047);
-    DECLARE category VARCHAR(63);
-	DECLARE prep_time INT;
-	DECLARE cook_time INT;
-	DECLARE serving_count INT;
-
-    SELECT recipe_name, url, category, prep_time, cook_time, serving_count
-    INTO recipe_name, url, category, prep_time, cook_time, serving_count
+    SELECT *
     FROM recipe
     WHERE recipe_name = get_recipe_name;
 END $$
+
+CREATE PROCEDURE get_step_records (IN get_recipe_name VARCHAR(255))
+BEGIN
+    SELECT *
+    FROM step
+    WHERE recipe_name = get_recipe_name;
+END$$
+
+CREATE PROCEDURE get_ingredient_records (IN get_recipe_name VARCHAR(255))
+BEGIN
+    SELECT *
+    FROM ingredient
+    WHERE recipe_name = get_recipe_name;
+END$$
 
 CREATE PROCEDURE insert_recipe(
 	IN new_recipe_name VARCHAR(255),
@@ -54,14 +58,6 @@ CREATE PROCEDURE insert_recipe(
 BEGIN
 INSERT INTO recipe
 VALUES (new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count);
-/* // Using this method would prevent attempting to insert a duplicate record
-    SELECT new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count
-    FROM dual
-    WHERE NOT EXISTS (
-		SELECT *
-        FROM recipe
-        WHERE recipe_name = new_recipe_name);
-*/
 END$$
 
 CREATE PROCEDURE insert_step(
@@ -71,14 +67,6 @@ CREATE PROCEDURE insert_step(
 BEGIN
 INSERT INTO step
 VALUES (new_recipe_name, new_step_number, new_instruction);
-/* // Using this method would prevent attempting to insert a duplicate record
-    SELECT new_recipe_name, new_step_number, new_instruction
-    FROM dual
-    WHERE NOT EXISTS (
-        SELECT *
-        FROM step
-        WHERE recipe_name = new_recipe_name AND step_number = new_step_number);
-*/
 END$$
 
 CREATE PROCEDURE insert_ingredient(
@@ -89,14 +77,6 @@ CREATE PROCEDURE insert_ingredient(
 BEGIN
 INSERT INTO ingredient
 VALUES (new_recipe_name, new_ingredient_name, new_quantity, new_unit);
-/* // Using this method would prevent attempting to insert a duplicate record
-	SELECT new_recipe_name, new_ingredient_name, new_quantity, new_unit
-    FROM dual
-	WHERE NOT EXISTS (
-		SELECT *
-        FROM ingredient
-        WHERE recipe_name = new_recipe_name AND ingredient_name = new_ingredient_name);
-*/
 END$$
 
 CREATE PROCEDURE delete_recipe(
