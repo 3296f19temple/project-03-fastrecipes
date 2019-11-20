@@ -5,9 +5,11 @@
 #include <fstream>
 #include "webscrape.h"
 
+#include "Mysql_Connection.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+  std::cout << "Hello World!\n";
 	std::string filename = "../scripts/recipes.dat";
 	Py_recipe recipe{};
 	std::ifstream file(filename);
