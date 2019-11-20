@@ -18,6 +18,37 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mysql_Connection.cpp" />
+    <ClCompile Include="webscrape.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mysql_Connection.h" />
+    <ClInclude Include="webscrape.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\build_config.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\config.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\connection.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\datatype.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\driver.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\exception.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\metadata.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\parameter_metadata.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\prepared_statement.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\resultset.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\resultset_metadata.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\sqlstring.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\statement.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\variant.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\version_info.h" />
+    <ClInclude Include="x64\Debug\include\cppconn\warning.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="x64\Debug\libcrypto-1_1-x64.dll" />
+    <None Include="x64\Debug\libssl-1_1-x64.dll" />
+    <None Include="x64\Debug\mysqlcppconn-7-vs14.dll" />
+    <None Include="x64\Debug\mysqlcppconn8-2-vs14.dll" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{72D4FF8D-97C4-4CD2-B169-E4DB31DBDE66}</ProjectGuid>
@@ -91,10 +122,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)x64\Debug\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -106,12 +140,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)x64/Debug/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)x64\Debug\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)x64/Debug/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\lib\</AdditionalLibraryDirectories>
       <AdditionalDependencies>libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -126,12 +160,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)x64\Debug\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,122 +182,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Mango\OneDrive - Temple University\Fall 2019\CIS 3296 03\project-03-fastrecipes\FastRecipes\x64\Debug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)x64\Debug\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Mango\OneDrive - Temple University\Fall 2019\CIS 3296 03\project-03-fastrecipes\FastRecipes\x64\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\lib\</AdditionalLibraryDirectories>
       <AdditionalDependencies>libcrypto.lib;libssl.lib;mysqlcppconn.lib;mysqlcppconn8.lib;mysqlcppconn8-static.lib;mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mysql_Connection.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Mysql_Connection.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\build_config.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\config.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\connection.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\datatype.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\driver.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\exception.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\metadata.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\parameter_metadata.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\prepared_statement.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\resultset.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\resultset_metadata.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\sqlstring.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\statement.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\variant.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\version_info.h" />
-    <ClInclude Include="x64\Debug\include\cppconn\warning.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\api.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\error.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\op_if.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\settings.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\util.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common\value.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\common_constants.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collations.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\collection_crud.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\common.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\crud.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\crud.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\error.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\result.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\row.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\session.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\detail\settings.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\document.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\error.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\executable.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_charsets.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\mysql_collations.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\result.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\row.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\settings.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\devapi\table_crud.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\xapi.h" />
-    <ClInclude Include="x64\Debug\include\mysqlx\xdevapi.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".vs\FastRecipes\v16\Browse.VC.db" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\257db45396439b3\MAIN.ipch" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\4189de3b11161c1\MAIN.ipch" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\7a15cacb012da83\MYSQL_CONNECTION.ipch" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\8f58040095e553cc\MAIN.ipch" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\b42aa2787197fd03\MAIN.ipch" />
-    <None Include=".vs\FastRecipes\v16\ipch\AutoPCH\f71a0fda2f0391b3\MYSQL_CONNECTION.ipch" />
-    <None Include="Debug\FastRecipes.tlog\CL.command.1.tlog" />
-    <None Include="Debug\FastRecipes.tlog\FastRecipes.lastbuildstate" />
-    <None Include="Debug\FastRecipes.tlog\unsuccessfulbuild" />
-    <None Include="x64\Debug\FastRecipes.tlog\CL.command.1.tlog" />
-    <None Include="x64\Debug\FastRecipes.tlog\CL.read.1.tlog" />
-    <None Include="x64\Debug\FastRecipes.tlog\CL.write.1.tlog" />
-    <None Include="x64\Debug\FastRecipes.tlog\FastRecipes.lastbuildstate" />
-    <None Include="x64\Debug\FastRecipes.tlog\link.command.1.tlog" />
-    <None Include="x64\Debug\FastRecipes.tlog\link.read.1.tlog" />
-    <None Include="x64\Debug\FastRecipes.tlog\link.write.1.tlog" />
-    <None Include="x64\Debug\libcrypto-1_1-x64.dll" />
-    <None Include="x64\Debug\libssl-1_1-x64.dll" />
-    <None Include="x64\Debug\mysqlcppconn-7-vs14.dll" />
-    <None Include="x64\Debug\mysqlcppconn8-2-vs14.dll" />
-    <None Include="x64\Debug\vc142.idb" />
-    <None Include="x64\Debug\vc142.pdb" />
-    <None Include="x64\Release\FastRecipes.iobj" />
-    <None Include="x64\Release\FastRecipes.ipdb" />
-    <None Include="x64\Release\FastRecipes.pdb" />
-    <None Include="x64\Release\FastRecipes.tlog\CL.command.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\CL.read.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\CL.write.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\FastRecipes.lastbuildstate" />
-    <None Include="x64\Release\FastRecipes.tlog\FastRecipes.write.1u.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\link.command.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\link.delete.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\link.read.1.tlog" />
-    <None Include="x64\Release\FastRecipes.tlog\link.write.1.tlog" />
-    <None Include="x64\Release\libcrypto-1_1-x64.dll" />
-    <None Include="x64\Release\libssl-1_1-x64.dll" />
-    <None Include="x64\Release\mysqlcppconn-7-vs14.dll" />
-    <None Include="x64\Release\mysqlcppconn8-2-vs14.dll" />
-    <None Include="x64\Release\vc142.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="x64\Release\FastRecipes.log" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="x64\Debug\lib\libcrypto.lib" />
-    <Library Include="x64\Debug\lib\libssl.lib" />
-    <Library Include="x64\Debug\lib\mysqlcppconn-static.lib" />
-    <Library Include="x64\Debug\lib\mysqlcppconn.lib" />
-    <Library Include="x64\Debug\lib\mysqlcppconn8-static.lib" />
-    <Library Include="x64\Debug\lib\mysqlcppconn8.lib" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
