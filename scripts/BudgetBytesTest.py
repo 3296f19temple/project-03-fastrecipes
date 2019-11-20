@@ -20,6 +20,7 @@ class Recipe:
     def __init__(self):
         self.name = "n/a"
         self.url = "n/a"
+        self.img_url = "n/a"
         self.category = "n/a"
         self.prep_time = "n/a"
         self.cook_time = "n/a"
@@ -76,6 +77,17 @@ def get_recipe_time(soup, Recipe):
     #     return
     # Recipe.total_time = element[0].text
 
+def get_recipe_image(soup, Recipe):
+    element = soup.select('.wprm-recipe-image')
+    if element == []:
+        return
+    child = element[0].children
+    img = next(child)
+    url = img['data-lazy-src']
+    if url is None:
+        return
+    Recipe.img_url = url
+
 
 def get_recipe_servings(soup, Recipe):
     element = soup.select('.wprm-recipe-servings')
@@ -122,6 +134,7 @@ def get_recipe_contents(soup, recipe):
     get_recipe_name(soup, recipe)
     get_recipe_time(soup, recipe)
     get_recipe_servings(soup, recipe)
+    get_recipe_image(soup, recipe)
 
 
 def validate_recipe(recipe):
@@ -140,6 +153,8 @@ def write_recipe_to_file(fileName, recipe):
         f.write(recipe.name)
         f.write("\nurl: ")
         f.write(recipe.url)
+        f.write("\nimg_url: ")
+        f.write(recipe.img_url)
         f.write("\ncategory: ")
         f.write(recipe.category)
         f.write("\nprep_time: ")
@@ -166,6 +181,7 @@ def write_recipe_to_file(fileName, recipe):
             f.write("\n")
             i = i + 1
         f.write("\n---\n")
+        print("wrote recipe!")
 
 
 
@@ -185,5 +201,3 @@ recipe.url = webpage
 if validate_recipe(recipe):
     # write recipe to file
     write_recipe_to_file("recipes.dat", recipe)
-    
-
