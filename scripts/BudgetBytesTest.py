@@ -22,9 +22,9 @@ class Recipe:
         self.url = "n/a"
         self.img_url = "n/a"
         self.category = "n/a"
-        self.prep_time = "n/a"
-        self.cook_time = "n/a"
-        self.num_servings = "n/a"
+        self.prep_time = "-1"
+        self.cook_time = "-1"
+        self.num_servings = "-1"
         self.ingredients = []
         self.instructions = []
 
