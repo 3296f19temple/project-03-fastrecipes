@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Fast Recipes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="CSS/mycss.css" rel="stylesheet" type="text/css" />
+    </head>
+    
+    <body>
+        <div id="titleNav">
+            <div id="title">
+                <p style ='font-size:30px'>
+                    Fast Recipes
+                </p>
+            </div>
+        </div>
+        <div id="content">
+        </div>
+        
+        <script src="js/home.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/routeFw.js"></script>
+        <script>
+             "use strict";
+             var myRoutes = [];
+
+             myRoutes['/'] = home;
+             myRoutes['/home'] = home;
+             
+            var myRoutes = routeFw({
+                routeArray: myRoutes,
+                //startingPath: '/home',
+                contentId: "content",
+                startingPath: "#/home"
+                });
+        </script>
+    </body>
+</html>
