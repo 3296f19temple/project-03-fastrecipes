@@ -15,6 +15,9 @@
 
 import bs4 
 import requests 
+import os.path
+import re
+from os import path
 
 class Recipe:
     def __init__(self):
@@ -83,7 +86,10 @@ def get_recipe_image(soup, Recipe):
         return
     child = element[0].children
     img = next(child)
-    url = img['data-lazy-src']
+    try:
+        url = img['data-lazy-src']
+    except:
+        return
     if url is None:
         return
     Recipe.img_url = url
@@ -148,7 +154,7 @@ def validate_recipe(recipe):
 
 
 def write_recipe_to_file(fileName, recipe):
-    with open(fileName, 'w') as f:
+    with open(fileName, 'a', encoding="utf-8") as f:
         f.write("name: ")
         f.write(recipe.name)
         f.write("\nurl: ")
@@ -181,23 +187,76 @@ def write_recipe_to_file(fileName, recipe):
             f.write("\n")
             i = i + 1
         f.write("\n---\n")
-        print("wrote recipe!")
+        print("wrote ", recipe.name)
 
 
+def create_url_list_from_citemap():
+    url_list = []
+    website = 'https://www.budgetbytes.com/post-sitemap1.xml'
+    website2 = 'https://www.budgetbytes.com/post-sitemap2.xml'
+    res1 = requests.get(website)
+    res2 = requests.get(website2)
+    soup1 = bs4.BeautifulSoup(res1.text, "html.parser")
+    soup2 = bs4.BeautifulSoup(res2.text, "html.parser")
+    urls1 = soup1.select('url')
+    urls2 = soup2.select('url')
+    with open("budgetbytes-urls.txt", "w") as f:
+        for url in urls1:
+            f.write(url.loc.text)
+            url_list.append(url.loc.text)
+            f.write("\n")
+        for url in urls2:
+            f.write(url.loc.text)
+            url_list.append(url.loc.text)
+            f.write("\n")
+    print("created budgetbytes-urls.txt from sitemap")
+    return url_list
+    
 
-# Test Code
-webpage = 'https://www.budgetbytes.com/sweet-potato-biscuits/'
-# fetch webpage
-res = requests.get(webpage)
-res.raise_for_status()
-html_string = res.text
-# Get beautiful soup parser
-soup = bs4.BeautifulSoup(html_string, 'html.parser')
-# create new recipe object
-recipe = Recipe()
-# fill its contents
-get_recipe_contents(soup, recipe)
-recipe.url = webpage
-if validate_recipe(recipe):
-    # write recipe to file
-    write_recipe_to_file("recipes.dat", recipe)
+def download_all_html():
+    with open("budgetbytes-urls.txt", "r") as f:
+        i = 1
+        for line in f:
+            name = "BudgetBytes\\" + "BudgetBytes" + str(i) + ".html"
+            if path.exists(name):
+                continue
+            res = requests.get(line.lstrip())
+            with open(name, "w", encoding="utf-8") as f:
+                f.write(res.text)
+                print("wrote ", name)
+            i = i + 1
+
+
+def read_budgetbytes_html(filename, url_list):
+    fi = "BudgetBytes\\" + filename;
+    with open(fi, "r", encoding="utf-8") as f:
+        html_string = f.read()
+        soup = bs4.BeautifulSoup(html_string, 'html.parser')
+        # create new recipe object
+        recipe = Recipe()
+        # fill its contents
+        get_recipe_contents(soup, recipe)
+        # get number 
+        num_ls = re.findall("\d", filename)
+        num = int(num_ls[0])
+        # increment it by on
+        num = num - 1
+        # set this to the proper thing
+        recipe.url = url_list[num]
+        if validate_recipe(recipe):
+            # write recipe to file
+            print ("writing", filename)
+            write_recipe_to_file("recipes.dat", recipe)
+        else:
+            print (".....skipping ", filename)
+
+
+# MAIN 
+url_list = create_url_list_from_citemap()
+download_all_html()
+with open("recipes.dat", "w") as f:
+    pass
+for i in range(len(url_list) - 1):
+    name = "BudgetBytes" + str(i + 1) + ".html"
+    read_budgetbytes_html(name , url_list)
+print ("ta-da!")
