@@ -85,6 +85,7 @@ bool get_ingredient(std::ifstream& stream, Py_recipe& recipe) {
 		return false;
 	std::getline(stream, ingredient.unit);
 	recipe.ingredients.push_back(ingredient);
+	return true;
 }
 
 bool get_instruction(std::ifstream& stream, Py_recipe& recipe)
