@@ -8,30 +8,34 @@
 #include "Mysql_Connection.h"
 #include "py-sql_adapter.h"
 
+const std::string filename = "../scripts/recipes.dat";
+
 int main()
 {
-	std::string filename = "../scripts/recipes.dat";
-	Py_recipe py_recipe{};
-	SQL_recipe sql_recipe{};
-	std::ifstream file(filename);
-	if (!file) {
-		std::cerr << "Unable to open file " << filename << "\n";
-		return 0;
-	}
-	
-	int insertedRecipes = 0;
-	while (read_recipe(file, py_recipe)) {
-		// do something with recipe object
-		// std::cout << "------------------------" << "\n";
-
-		pyToMysqlRecipe(py_recipe, sql_recipe);
-		//print_sql_recipe(sql_recipe);
-		insertRecipe(sql_recipe);
-		sql_recipe = {};
-		py_recipe = {};
-		if (++insertedRecipes % 100 == 0) {
-			std::cout << insertedRecipes << " recipes inserted" << std::endl;
+	int input;
+	SQL_recipe sql_recipe;
+	while (true) {
+		std::cout << "--------------------------" << std::endl;
+		std::cout << "[1]\tinsert recipes from file" << std::endl;
+		std::cout << "[2]\tget random recipe" << std::endl;
+		std::cout << "[3]\texit" << std::endl;
+		std::cout << "--------------------------" << std::endl;
+		std::cout << "Enter choice: ";
+		std::cin >> input;
+		std::cout << std::endl;
+		switch (input) {
+		case 1:
+			insertFromDatFile(filename);
+			break;
+		case 2:
+			sql_recipe = getRandomRecipe();
+			print_sql_recipe(sql_recipe);
+			sql_recipe = {};
+			break;
+		case 3:
+			return 0;
+		default:
+			std::cout << "invalid" << std::endl;
 		}
 	}
-	return 0;
 }

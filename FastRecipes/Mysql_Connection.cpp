@@ -243,6 +243,45 @@ void insertIngredientRecords(sql::SQLString recipe_name, vector<RecipeIngredient
 	delete con;
 }
 
+sql::SQLString getRandomRecipeName() {
+	sql::Driver* driver = nullptr;
+	sql::Connection* con = nullptr;
+	sql::ResultSet* res = nullptr;
+	sql::PreparedStatement* pstmt = nullptr;
+	sql::SQLString recipe_name;
+
+	try {
+		driver = get_driver_instance();
+		con = driver->connect(server, user, password);
+		con->setSchema(schema);
+
+		pstmt = con->prepareStatement("CALL get_random_recipe()");
+		res = pstmt->executeQuery();
+		while (res->next()) {
+			recipe_name = res->getString("recipe_name");
+		}
+	}
+	catch (sql::SQLException & e) {
+		cout << "# ERR: SQLException in " << __FILE__;
+		cout << "(" << __FUNCTION__ << ")" << endl;
+		cout << "# ERR: " << e.what();
+		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
+	}
+	delete res;
+	delete pstmt;
+	delete con;
+	return recipe_name;
+}
+
+SQL_recipe getRandomRecipe() {
+	sql::SQLString recipe_name;
+	SQL_recipe sql_recipe{};
+
+	recipe_name = getRandomRecipeName();
+	sql_recipe = getRecipe(recipe_name);
+	return sql_recipe;
+}
+
 SQL_recipe getRecipe(sql::SQLString recipe_name) {
 	SQL_recipe recipe;
 	recipe.recipeRecord = getRecipeRecord(recipe_name);
@@ -303,21 +342,4 @@ void print_sql_recipe(SQL_recipe recipe) {
 		cout << "Ingredient.unit: " << ingredient.unit.c_str() << endl;
 	}
 	cout << "---" << endl << endl;
-}
-
-void Mysql_Connection_Tester() {
-	RecipeRecord rr = { "scrambled eggs", "", "", "breakfast", 10, 10, 2 };
-	StepRecord st1 = { 1, "break eggs and scramble" };
-	StepRecord st2 = { 2, "fry in pan" };
-	RecipeIngredientRecord rit1 = { "egg", 2, "eggs" };
-	RecipeIngredientRecord rit2 = { "salt", 0.25, "tsp" };
-	SQL_recipe recipe = { rr, {st1, st2}, {rit1, rit2} };
-	insertRecipe(recipe);
-
-	sql::SQLString recipe_name = "scrambled eggs";
-	recipe = getRecipe(recipe_name);
-
-	print_sql_recipe(recipe);
-
-	deleteRecipe(rr.recipe_name);
 }

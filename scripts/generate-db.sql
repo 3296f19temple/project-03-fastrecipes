@@ -3,14 +3,15 @@ CREATE SCHEMA fast_recipes;
 USE fast_recipes;
 
 CREATE TABLE recipe (
-    recipe_name VARCHAR(255) NOT NULL,
+	recipe_id INT NOT NULL AUTO_INCREMENT,
+    recipe_name VARCHAR(255) NOT NULL UNIQUE,
     url VARCHAR(2047),
     image_url VARCHAR(2047),
     category VARCHAR(63),
 	prep_time INT,
 	cook_time INT,
 	serving_count INT,
-    CONSTRAINT pk_recipe PRIMARY KEY (recipe_name));
+    CONSTRAINT pk_recipe PRIMARY KEY (recipe_id));
 
 CREATE TABLE step (
     recipe_name VARCHAR(255) NOT NULL,
@@ -28,10 +29,31 @@ CREATE TABLE ingredient (
     CONSTRAINT pk_ingredient PRIMARY KEY (ingredient_id),
     CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
+
+
+    
 DELIMITER $$
+
+CREATE PROCEDURE get_random_recipe ()
+BEGIN
+	SELECT recipe_name
+	FROM recipe AS r1
+	JOIN (
+		SELECT (
+			RAND() * (
+				SELECT MAX(recipe_id)
+				FROM recipe
+            )
+		)AS recipe_id
+	) AS r2
+	WHERE r1.recipe_id >= r2.recipe_id
+	ORDER BY r1.recipe_id ASC
+	LIMIT 1;
+END $$
+
 CREATE PROCEDURE get_recipe_record (IN get_recipe_name VARCHAR(255))
 BEGIN
-    SELECT *
+    SELECT recipe_name, url, image_url, category, prep_time, cook_time, serving_count
     FROM recipe
     WHERE recipe_name = get_recipe_name;
 END $$
@@ -60,7 +82,7 @@ CREATE PROCEDURE insert_recipe(
 	IN new_serving_count INT)
 BEGIN
 INSERT INTO recipe
-VALUES (new_recipe_name, new_url, new_image_url, new_category, new_prep_time, new_cook_time, new_serving_count);
+VALUES (DEFAULT, new_recipe_name, new_url, new_image_url, new_category, new_prep_time, new_cook_time, new_serving_count);
 END$$
 
 CREATE PROCEDURE insert_step(
@@ -87,6 +109,7 @@ CREATE PROCEDURE delete_recipe(
 BEGIN
     DELETE FROM recipe WHERE recipe_name = del_recipe_name;
 END$$
+
 DELIMITER ;
 
 # DROP SCHEMA fast_recipes;

@@ -34,10 +34,10 @@ public:
 	std::vector<RecipeIngredientRecord> ingredients;
 };
 
+SQL_recipe getRandomRecipe();
+
 SQL_recipe getRecipe(sql::SQLString recipe_name);
 
 void insertRecipe(SQL_recipe recipe);
 
 void print_sql_recipe(SQL_recipe recipe);
-
-void Mysql_Connection_Tester();
