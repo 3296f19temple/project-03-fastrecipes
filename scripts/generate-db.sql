@@ -5,6 +5,7 @@ USE fast_recipes;
 CREATE TABLE recipe (
     recipe_name VARCHAR(255) NOT NULL,
     url VARCHAR(2047),
+    image_url VARCHAR(2047),
     category VARCHAR(63),
 	prep_time INT,
 	cook_time INT,
@@ -19,11 +20,12 @@ CREATE TABLE step (
     CONSTRAINT fk_step_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
 CREATE TABLE ingredient (
+	ingredient_id INT NOT NULL AUTO_INCREMENT,
 	recipe_name VARCHAR(255) NOT NULL,
-    ingredient_name VARCHAR(255) NOT NULL,
+    ingredient_name VARCHAR(255),
     quantity NUMERIC(6, 2),
     unit VARCHAR(65),
-    CONSTRAINT pk_ingredient PRIMARY KEY (recipe_name, ingredient_name),
+    CONSTRAINT pk_ingredient PRIMARY KEY (ingredient_id),
     CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
 
 DELIMITER $$
@@ -43,7 +45,7 @@ END$$
 
 CREATE PROCEDURE get_ingredient_records (IN get_recipe_name VARCHAR(255))
 BEGIN
-    SELECT *
+    SELECT recipe_name, ingredient_name, quantity, unit
     FROM ingredient
     WHERE recipe_name = get_recipe_name;
 END$$
@@ -51,13 +53,14 @@ END$$
 CREATE PROCEDURE insert_recipe(
 	IN new_recipe_name VARCHAR(255),
 	IN new_url VARCHAR(2047),
+    IN new_image_url VARCHAR(2047),
     IN new_category VARCHAR(63),
 	IN new_prep_time INT,
 	IN new_cook_time INT,
 	IN new_serving_count INT)
 BEGIN
 INSERT INTO recipe
-VALUES (new_recipe_name, new_url, new_category, new_prep_time, new_cook_time, new_serving_count);
+VALUES (new_recipe_name, new_url, new_image_url, new_category, new_prep_time, new_cook_time, new_serving_count);
 END$$
 
 CREATE PROCEDURE insert_step(
@@ -76,7 +79,7 @@ CREATE PROCEDURE insert_ingredient(
     IN new_unit VARCHAR(255))
 BEGIN
 INSERT INTO ingredient
-VALUES (new_recipe_name, new_ingredient_name, new_quantity, new_unit);
+VALUES (DEFAULT, new_recipe_name, new_ingredient_name, new_quantity, new_unit);
 END$$
 
 CREATE PROCEDURE delete_recipe(

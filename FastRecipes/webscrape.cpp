@@ -100,7 +100,7 @@ bool get_instruction(std::ifstream& stream, Py_recipe& recipe)
 	std::getline(stream, junk);
 	std::getline(stream, step);
 	recipe.instructions.push_back(step);
-	std::cout << "got step\n";
+	// std::cout << "got step\n";
 	return true;
 }
 
