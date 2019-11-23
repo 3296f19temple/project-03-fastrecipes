@@ -1,8 +1,8 @@
 # Created by Matthew Majewski (BigBadBoris) on 11/13/2019
 # This script is made to web-scrape recipes from the website
-# budgetbytes.com. The html is nicely organized into distinct 
-# classes, which make it easy to separate ingredient names, 
-# amounts, and units of each amount. 
+# budgetbytes.com. The html is nicely organized into distinct
+# classes, which make it easy to separate ingredient names,
+# amounts, and units of each amount.
 
 # To figure out how to parse the html tree of a website to
 # extract the information you want, I recomend using the
@@ -13,11 +13,11 @@
 # over a portion of the html, and the relevant region in the
 # webpage will be high-lighted as well.
 
-import bs4 
-import requests 
-import os.path
+import bs4
+import requests
 import re
 from os import path
+
 
 class Recipe:
     def __init__(self):
@@ -43,7 +43,7 @@ def print_recipe(recipe):
     print("Name: ", recipe.name)
     print("Prep Time: ", recipe.prep_time)
     print("Cook Time: ", recipe.cook_time)
-    #print("Total Time: ", recipe.total_time)
+    # print("Total Time: ", recipe.total_time)
     print("Servings: ", recipe.num_servings)
     print("Ingredients: ")
     for ingredient in recipe.ingredients:
@@ -80,6 +80,7 @@ def get_recipe_time(soup, Recipe):
     #     return
     # Recipe.total_time = element[0].text
 
+
 def get_recipe_image(soup, Recipe):
     element = soup.select('.wprm-recipe-image')
     if element == []:
@@ -108,7 +109,7 @@ def get_recipe_instructions(soup, Recipe):
         return
     for element in elements:
         Recipe.instructions.append(element.text)
-    
+
 
 def get_recipe_ingredients(soup, Recipe):
     top_elements = soup.select('.wprm-recipe-ingredient')
@@ -124,13 +125,13 @@ def get_recipe_ingredients(soup, Recipe):
             # do comparison here
             if current_class == 'wprm-recipe-ingredient-amount':
                 ingredient.amount = child.text
-                #print("\tingredient amount: ", child.text)
+                # print("\tingredient amount: ", child.text)
             elif current_class == 'wprm-recipe-ingredient-unit':
                 ingredient.unit = child.text
-                #print("\tingredient unit: ", child.text)
+                # print("\tingredient unit: ", child.text)
             elif current_class == 'wprm-recipe-ingredient-name':
                 ingredient.name = child.text
-                #print("\tingredient name: ", child.text)
+                # print("\tingredient name: ", child.text)
         Recipe.ingredients.append(ingredient)
 
 
@@ -211,7 +212,7 @@ def create_url_list_from_citemap():
             f.write("\n")
     print("created budgetbytes-urls.txt from sitemap")
     return url_list
-    
+
 
 def download_all_html():
     with open("budgetbytes-urls.txt", "r") as f:
@@ -228,7 +229,7 @@ def download_all_html():
 
 
 def read_budgetbytes_html(filename, url_list):
-    fi = "BudgetBytes\\" + filename;
+    fi = "BudgetBytes\\" + filename
     with open(fi, "r", encoding="utf-8") as f:
         html_string = f.read()
         soup = bs4.BeautifulSoup(html_string, 'html.parser')
@@ -236,8 +237,8 @@ def read_budgetbytes_html(filename, url_list):
         recipe = Recipe()
         # fill its contents
         get_recipe_contents(soup, recipe)
-        # get number 
-        num_ls = re.findall("\d", filename)
+        # get number
+        num_ls = re.findall('\d', filename)
         num = int(num_ls[0])
         # increment it by on
         num = num - 1
@@ -245,18 +246,18 @@ def read_budgetbytes_html(filename, url_list):
         recipe.url = url_list[num]
         if validate_recipe(recipe):
             # write recipe to file
-            print ("writing", filename)
+            print("writing", filename)
             write_recipe_to_file("recipes.dat", recipe)
         else:
-            print (".....skipping ", filename)
+            print(".....skipping ", filename)
 
 
-# MAIN 
+# MAIN
 url_list = create_url_list_from_citemap()
 download_all_html()
 with open("recipes.dat", "w") as f:
     pass
 for i in range(len(url_list) - 1):
     name = "BudgetBytes" + str(i + 1) + ".html"
-    read_budgetbytes_html(name , url_list)
-print ("ta-da!")
+    read_budgetbytes_html(name, url_list)
+print("ta-da!")
