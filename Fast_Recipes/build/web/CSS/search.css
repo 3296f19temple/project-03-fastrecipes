@@ -1,0 +1,9 @@
+.search {
+    text-align:center;
+}
+
+.search img {
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px #888888;
+    width: 150px;
+}
