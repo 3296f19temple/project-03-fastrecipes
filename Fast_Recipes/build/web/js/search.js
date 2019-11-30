@@ -56,11 +56,14 @@ function my$(id) {
                 else if (obj.webUserList.length === 0 ) {
                     targetDOM.innerHTML = "No recipe with ingredient " + desiredIngredient + " was found.";
                 } else {
-                    var msg = "Found Recipe " + obj.recipeList[0].webUserId;
-                    msg += "<br/> &nbsp; Birthday: " +  obj.webUserList[0].birthday;
-                    msg += "<br/> &nbsp; MembershipFee: " +  obj.webUserList[0].membershipFee;
-                    msg += "<br/> &nbsp; User Role: " +  obj.webUserList[0].userRoleId + " " +  obj.webUserList[0].userRoleType;
-                    msg += "<br/> <img src ='" +  obj.webUserList[0].image + "'>";
+                    var msg = "Found Recipe " + obj.recipeList[0].recipeName;
+                    msg += "<br/> <img src ='" +  obj.recipeList[0].image + "'>";
+                    msg += "<br/> &nbsp; Ingredient: " +  obj.recipeList[0].ingredientName;
+                    msg += "<br/> &nbsp; Quantity: " +  obj.recipeList[0].quantity + " " + obj.recipeList[0].unit;
+                    msg += "<br/> &nbsp; Prep Time: " +  obj.recipeList[0].prepTime;
+                    msg += "<br/> &nbsp; Cook Time: " +  obj.recipeList[0].cookTime;
+                    msg += "<br/> &nbsp; Servings: " +  obj.recipeList[0].servingCount;
+                    msg += "<br/> &nbsp; Step " +  obj.recipeList[0].stepNumber + ": " +  obj.recipeList[0].instruction;
                     targetDOM.innerHTML = msg;  
                 }
 

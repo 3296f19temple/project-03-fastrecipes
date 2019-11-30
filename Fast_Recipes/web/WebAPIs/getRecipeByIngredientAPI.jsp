@@ -2,7 +2,7 @@
 
 <%@page language="java" import="dbUtils.*" %>
 <%@page language="java" import="model.recipe.*" %> 
-<%@page language="java" import="view.WebUserView" %> 
+<%@page language="java" import="view.RecipeView" %> 
 <%@page language="java" import="com.google.gson.*" %>
 
 <%
@@ -10,9 +10,9 @@
     // default constructor creates nice empty StringDataList with all fields "" (empty string, nothing null).
     StringDataList list = new StringDataList();
 
-    String searchId = request.getParameter("URLid");
+    String searchId = request.getParameter("URLingredient");
     if (searchId == null) {
-        list.dbError = "Cannot search for user - 'URLid' most be supplied";
+        list.dbError = "Cannot search for ingredient - 'URLingredient' must be supplied";
     } else {
 
         DbConn dbc = new DbConn();
@@ -20,8 +20,8 @@
 
         if (list.dbError.length() == 0) { // if got good DB connection,
 
-            System.out.println("*** Ready to call allUsersAPI");
-            list = DbMods.findById(dbc, searchId);  
+            System.out.println("*** Ready to call allRecipesAPI");
+            list = DbMods.findByIngredient(dbc, searchId);  
         }
 
         dbc.close(); // EVERY code path that opens a db connection, must also close it - no DB Conn leaks.
