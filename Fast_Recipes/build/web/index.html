@@ -21,19 +21,73 @@ and open the template in the editor.
             <div id="title">Fast Recipes <img class="logo" src="icons/whiteLogo.png" alt="fork and spoon logo"/></div>
             
             <div id="nav">
-                <div class="dropdown">
-                    <a href="#/home">Home</a>
-                </div>
-                <div class="dropdown">
-                    <a href="#/search">Search</a>
-                </div>
+                
+                
+
             </div>
             
         </div>
         
         <div id="content">
+            
+    
         </div>
-        
+                <div class="search_results">
+                <div class="search_result card-2">
+                    <div class="card_top">
+                    <span class="category">ITALIAN FOOD</span>
+                     <div class="image_holder">
+                    <img src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/dc23cd051d2249a5903d25faf8eeee4c/BFV36537_CC2017_2IngredintDough4Ways-FB.jpg"/>
+                     </div>
+                    
+                    <h2>Brick Oven Pizza</h2>
+                    <p>COOK TIME: 30 Min </p>
+                    <p>PREP TIME: 15 Min </p>
+                    <a href="https://google.com"><button class="btn" type="button"><span>View Recipe</span></button></a>
+                    </div>
+                    <div class="card_bottom">
+                    <span>Ingredients:</span>
+                    <ul>
+                        <li>Flour - 3 Cups</li>
+                        <li>Water - 1 Cup</li> 
+                        <li>Yeast - 1 Bag</li>
+                        <li>Sugar - 1 Handful</li>
+                        <li>Cheese - A Lot</li>
+                    </ul>
+                    <hr/>
+                    
+                    <p>step 0:
+Pick the skin from the chicken carcass and make sure you’ve gotten all of the good meat off. Leave the cartilage as this will “melt” into the broth, adding flavor and nutrients. Yes, cartilage has nutrients. It’s like taking a joint supplement pill, but it tastes better.
+step 1:
+Make sure your vegetable scraps are clean by rinsing well with cool water. You can use the ends and stems of carrots, celery, herbs, onion skins, or any piece of a vegetable that you normally cut off and throw away. The vegetables WILL effect the flavor, so make sure you use vegetables that “go” together. I used celery, carrots, parsley stems, and onion skins.
+step 2:
+Add the chicken carcass and vegetable scraps to a large pot and cover with water (about 12 cups, depending on how big your chicken was and how many scraps you have). Bring up to a boil over med-high heat, then reduce to low and let simmer with a lid for 3-4 hours.
+step 3:
+After simmering, pour the broth through a colander into a large bowl or pot. Remove the colander and throw away all of the scraps. Cover the colander with a cheese cloth or another clean, lint-free cloth and pour the broth through once more to remove small particles.
+step 4:
+Divide the broth into smaller containers to help facilitate cooling. Refrigerate until cold and then transfer to the freezer, remembering to label and date each container.
+                    </p>
+                    </div>
+                </div>
+                    <div class="search_result card-2">
+                        <span class="category">CATEGORY</span>
+                     <div class="image_holder">
+                    <img src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/dc23cd051d2249a5903d25faf8eeee4c/BFV36537_CC2017_2IngredintDough4Ways-FB.jpg"/>
+                     </div>
+                    <h2>Test title</h2>
+                    <p>Result text and description</p>
+                    <p><a href="#">view recipe button</a></p>
+                </div>
+                       <div class="search_result card-2">
+                           <span class="category">CATEGORY</span>
+                     <div class="image_holder">
+                    <img src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/dc23cd051d2249a5903d25faf8eeee4c/BFV36537_CC2017_2IngredintDough4Ways-FB.jpg"/>
+                     </div>
+                    <h2>Test title</h2>
+                    <p>Result text and description</p>
+                    <p><a href="#">view recipe button</a></p>
+                </div>
+            </div>
         <script src="js/home.js"></script>
         <script src="js/ajax.js"></script>
         <script src="js/search.js"></script>
@@ -50,7 +104,7 @@ and open the template in the editor.
              
             var myRoutes = routeFw({
                 routeArray: myRoutes,
-                startingPath: '#/home',
+                startingPath: '#/search',
                 contentId: "content"
                 });
                 
