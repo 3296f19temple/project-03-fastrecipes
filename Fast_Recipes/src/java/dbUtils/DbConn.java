@@ -14,14 +14,14 @@ public class DbConn {
 
     public DbConn() {
         
-        String dbAndPass = "fast_recipes?user=root&password=password";
+        String dbAndPass = "fast_recipes?user=charles2";
 
         try {
             String DRIVER = "com.mysql.jdbc.Driver";
             Class.forName(DRIVER);
             try {
                 // Assume you are running from home using tunneling...
-                String url = "jdbc:mysql://localhost:3306/"+dbAndPass;
+                String url = "jdbc:mysql://localhost:3306/"+dbAndPass + "characterEncoding=latin1&useConfigs=maxPerformance";
 
                 this.conn = DriverManager.getConnection(url);
 

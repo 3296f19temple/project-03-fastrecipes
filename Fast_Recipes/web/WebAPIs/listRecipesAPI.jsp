@@ -6,7 +6,7 @@
 <%@page language="java" import="com.google.gson.*" %>
 <%@page language="java" import="java.sql.*" %>
 <%
-
+    {
    StringDataList strDataList = new StringDataList();
 
     System.out.println("*** Ready to get Db Connection.");
@@ -36,10 +36,11 @@
         }
     }
         dbc.close(); // EVERY code path that opens a db connection, must also close it - no DB Conn leaks.
+    Gson gson = new Gson();
+    out.print(gson.toJson(strDataList).trim());
     }
     
     
     // This object (from the GSON library) can to convert between JSON <-> POJO (plain old java object) 
-    Gson gson = new Gson();
-    out.print(gson.toJson(list).trim());
+
 %>
