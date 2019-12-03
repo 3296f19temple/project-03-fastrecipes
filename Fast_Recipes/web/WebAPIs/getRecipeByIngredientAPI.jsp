@@ -2,7 +2,7 @@
 
 <%@page language="java" import="dbUtils.*" %>
 <%@page language="java" import="model.recipe.*" %> 
-<%@page language="java" import="view.WebUserView" %> 
+<%@page language="java" import="view.RecipeView" %> 
 <%@page language="java" import="com.google.gson.*" %>
 
 <%

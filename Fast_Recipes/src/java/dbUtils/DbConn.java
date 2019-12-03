@@ -18,7 +18,7 @@ public class DbConn {
 
         try {
             String DRIVER = "com.mysql.jdbc.Driver";
-            Class.forName(DRIVER).newInstance();
+            Class.forName(DRIVER);
             try {
                 // Assume you are running from home using tunneling...
                 String url = "jdbc:mysql://localhost:3306/"+dbAndPass;
