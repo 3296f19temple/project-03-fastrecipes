@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Fast_Recipes_cmd.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mysql_Connection.cpp" />
+    <ClCompile Include="py-sql_adapter.cpp" />
     <ClCompile Include="webscrape.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fast_Recipes_cmd.h" />
     <ClInclude Include="Mysql_Connection.h" />
+    <ClInclude Include="py-sql_adapter.h" />
     <ClInclude Include="webscrape.h" />
     <ClInclude Include="x64\Debug\include\cppconn\build_config.h" />
     <ClInclude Include="x64\Debug\include\cppconn\config.h" />

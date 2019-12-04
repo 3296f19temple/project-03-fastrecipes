@@ -46,8 +46,8 @@ void insertFromDatFile(std::string filename) {
 	while (read_recipe(file, py_recipe)) {
 		pyToMysqlRecipe(py_recipe, sql_recipe);
 		insertRecipe(sql_recipe);
-		sql_recipe = {};
-		py_recipe = {};
+		sql_recipe = SQL_recipe();
+		py_recipe = Py_recipe();
 		if (++insertCount % 10 == 0) {
 			std::cout << insertCount << " recipes inserted" << std::endl;
 		}

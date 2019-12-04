@@ -28,9 +28,6 @@ CREATE TABLE ingredient (
     unit VARCHAR(65),
     CONSTRAINT pk_ingredient PRIMARY KEY (ingredient_id),
     CONSTRAINT fk_ingredient_recipe FOREIGN KEY (recipe_name) REFERENCES recipe(recipe_name) ON DELETE CASCADE);
-
-
-
     
 DELIMITER $$
 
@@ -109,6 +106,14 @@ CREATE PROCEDURE delete_recipe(
 BEGIN
     DELETE FROM recipe WHERE recipe_name = del_recipe_name;
 END$$
+
+CREATE PROCEDURE get_recipes_by_ingredient (IN get_ingredient VARCHAR(255))
+BEGIN
+	SELECT r.recipe_name
+    FROM recipe r
+    JOIN ingredient i ON r.recipe_name = i.recipe_name
+    WHERE ingredient_name LIKE CONCAT('%', get_ingredient, '%');
+END $$
 
 DELIMITER ;
 

@@ -24,6 +24,12 @@
     <ClCompile Include="webscrape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="py-sql_adapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fast_Recipes_cmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mysql_Connection.h">
@@ -78,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="webscrape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="py-sql_adapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fast_Recipes_cmd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

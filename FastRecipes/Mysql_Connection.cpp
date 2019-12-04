@@ -282,6 +282,40 @@ SQL_recipe getRandomRecipe() {
 	return sql_recipe;
 }
 
+vector<sql::SQLString> getRecipesByIngredient(sql::SQLString ingredient) {
+	sql::Driver* driver = nullptr;
+	sql::Connection* con = nullptr;
+	sql::ResultSet* res = nullptr;
+	sql::PreparedStatement* pstmt = nullptr;
+	vector<sql::SQLString> recipeNames;
+
+	try {
+		driver = get_driver_instance();
+		con = driver->connect(server, user, password);
+		con->setSchema(schema);
+
+		pstmt = con->prepareStatement("CALL get_recipes_by_ingredient(?)");
+		ingredient.compare("") == 0 ?
+			pstmt->setNull(1, sql::DataType::VARCHAR) :
+			pstmt->setString(1, ingredient);
+
+		res = pstmt->executeQuery();
+		while (res->next()) {
+			recipeNames.push_back(res->getString(1).c_str());
+		}
+	}
+	catch (sql::SQLException & e) {
+		cout << "# ERR: SQLException in " << __FILE__;
+		cout << "(" << __FUNCTION__ << ")" << endl;
+		cout << "# ERR: " << e.what();
+		cout << ", SQLErrorCode: " << e.getErrorCode() << " )" << endl;
+	}
+	delete res;
+	delete pstmt;
+	delete con;
+	return recipeNames;
+}
+
 SQL_recipe getRecipe(sql::SQLString recipe_name) {
 	SQL_recipe recipe;
 	recipe.recipeRecord = getRecipeRecord(recipe_name);
@@ -325,21 +359,21 @@ void deleteRecipe(sql::SQLString recipe_name) {
 }
 
 void print_sql_recipe(SQL_recipe recipe) {
-	cout << "RecipeRecord.recipe_name: " << recipe.recipeRecord.recipe_name.c_str() << endl;
-	cout << "RecipeRecord.url: " << recipe.recipeRecord.url.c_str() << endl;
-	cout << "RecipeRecord.category: " << recipe.recipeRecord.category.c_str() << endl;
-	cout << "RecipeRecord.prep_time: " << recipe.recipeRecord.prep_time << endl;
-	cout << "RecipeRecord.cook_time: " << recipe.recipeRecord.cook_time << endl;
-	cout << "RecipeRecord.serving_count: " << recipe.recipeRecord.serving_count << endl << endl;
-	for (StepRecord step : recipe.steps) {
-		cout << "Step.step_number: " << step.step_number << endl;
-		cout << "Step.instruction: " << step.instruction.c_str() << endl;
+	std::cout << "--------------------------" << std::endl;
+	cout << "NAME: " << recipe.recipeRecord.recipe_name.c_str() << endl;
+	cout << "URL: " << recipe.recipeRecord.url.c_str() << endl;
+	cout << "CATEGORY: " << recipe.recipeRecord.category.c_str() << endl;
+	cout << "PREPERATION TIME: " << recipe.recipeRecord.prep_time << endl;
+	cout << "COOKING TIME: " << recipe.recipeRecord.cook_time << endl;
+	cout << "SERVING COUNT: " << recipe.recipeRecord.serving_count << endl << endl;
+	cout << "INGREDIENTS: " << endl;
+	for (RecipeIngredientRecord ingredient : recipe.ingredients) {
+		cout << ingredient.ingredient_name.c_str() << ", " << ingredient.quantity << " " << ingredient.unit.c_str() << endl;
 	}
 	cout << endl;
-	for (RecipeIngredientRecord ingredient : recipe.ingredients) {
-		cout << "Ingredient.ingredient_name: " << ingredient.ingredient_name.c_str() << endl;
-		cout << "Ingredient.quntity: " << ingredient.quantity << endl;
-		cout << "Ingredient.unit: " << ingredient.unit.c_str() << endl;
+	for (StepRecord step : recipe.steps) {
+		cout << "STEP " << step.step_number << ": ";
+		cout << step.instruction.c_str() << endl;
 	}
-	cout << "---" << endl << endl;
+	std::cout << endl << endl;
 }
