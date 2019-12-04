@@ -36,8 +36,12 @@ public:
 
 SQL_recipe getRandomRecipe();
 
+std::vector<sql::SQLString> getRecipesByIngredient(sql::SQLString ingredient);
+
 SQL_recipe getRecipe(sql::SQLString recipe_name);
 
 void insertRecipe(SQL_recipe recipe);
+
+void deleteRecipe(sql::SQLString recipe_name);
 
 void print_sql_recipe(SQL_recipe recipe);
