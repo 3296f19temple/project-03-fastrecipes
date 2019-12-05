@@ -1,0 +1,45 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.dropdown a {
+    color: white;
+    text-decoration: none;
+}
+
+.dropContent {
+    display: none;
+    position: absolute;
+    background-color: gray;
+    border-radius: 5%;
+    z-index: 1;
+    min-width: 150px;
+}
+
+.dropContent a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropContent a:hover {
+    color: black;
+}
+
+.dropContent a:visited {
+    color: lightblue;
+}
+
+.dropdown:hover .dropContent {
+    display: block;
+}
+
+.dropHeader {
+    
+}

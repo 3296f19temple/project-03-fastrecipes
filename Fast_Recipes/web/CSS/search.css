@@ -1,0 +1,172 @@
+html {
+  font-family: 'Raleway', sans-serif;
+  padding: 3em 2em;
+  font-size: 18px;
+  background: #222;
+  color: #aaa
+}
+
+body {
+        background: url(https://previews.123rf.com/images/nikkiphoto/nikkiphoto1504/nikkiphoto150400091/39045395-Fresh-organic-vegetables-Food-background-Healthy-food-from-garden-Stock-Photo.jpg )no-repeat center fixed ;
+        font-family: cursive;
+        background-size: cover;
+       
+    }
+h1,h2 {
+  margin: 1em 0;
+}
+h1 { font-size: 3.5em; }
+h2 {
+  color: #222;
+  font-size: 2em;
+}
+
+.search {
+    text-align:center;
+    margin-top:-125px;
+}
+
+.search img {
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px #888888;
+    width: 150px;
+}
+
+.search_results {
+  
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px
+}
+
+.search_result {
+ 
+    display: inline-block;
+    width: 100%;
+    background-color: white;
+    color: #313030;
+    padding: 8px 5px 2px 8px;
+    margin-bottom: 152px;
+    margin-top: -222px;
+}
+
+.search_result .category {
+   
+
+    float: right;
+    margin-right: 4px;
+    display: block;
+    margin-top: -5px;
+    font-size: 14px;
+
+}
+.image_holder img{ 
+    max-width:150px
+}
+.search_result h2 {
+    margin-bottom:0px
+}
+.search_result p {
+    margin:0px
+}
+.image_holder {
+    float: left;
+    margin-right: 14px;
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card_top {
+        display: inline-block;
+    width: 100%;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.card_top a{
+    text-decoration:none;
+}
+.search_result ul {
+    list-style:none;
+    padding:0;
+}
+.search_result li {
+    padding: 5px 10px;
+    background-color: #fbfbfb;
+    border: 1px solid #cfcfcf;
+}
+
+.btn {
+  position: relative;
+
+  display: block;
+  margin-top:10px;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: #2ecc71;
+  color: #ecf0f1;
+  
+  transition: background-color .3s;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #27ae60;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 12px 24px;
+}
+
+.btn:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box; 
+}
+html{
+  min-height:100%;
+  background: #F5F5F5;
+  background: linear-gradient(top, #F5F5F5 0%,#A7A7A7 100%);
+}
+
