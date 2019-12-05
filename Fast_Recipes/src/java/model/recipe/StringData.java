@@ -15,16 +15,14 @@ import java.sql.ResultSet;
  * free access to put data in or take it out. */
 public class StringData {
 
-    public String webUserId = "";
-    public String userEmail = "";
-    public String userPassword = "";
-    public String userPassword2 = "";
-    public String birthday = "";
-    public String membershipFee = "";
-    public String image = "";
-    public String userRoleId = "";   // Foreign Key
-    public String userRoleType = ""; // getting it from joined user_role table.
-
+    public String recipeId = "";
+    public String recipeName = "";
+    public String url = "";
+    public String category = "";
+    public String prepTime = "";
+    public String cookTime = "";
+    public String totalTime = "";
+    public String servingCount = "";   
     public String errorMsg = "";
 
     // default constructor leaves all data members with empty string (Nothing null).
@@ -34,33 +32,33 @@ public class StringData {
     // overloaded constructor sets all data members by extracting from resultSet.
     public StringData(ResultSet results) {
         try {
-            this.webUserId = FormatUtils.formatInteger(results.getObject("web_user_id"));
-            this.userEmail = FormatUtils.formatString(results.getObject("user_email"));
-            this.userPassword = FormatUtils.formatString(results.getObject("user_password"));
-            this.birthday = FormatUtils.formatDate(results.getObject("birthday"));
-            this.membershipFee = FormatUtils.formatDollar(results.getObject("membership_fee"));
-            this.image = FormatUtils.formatString(results.getObject("image"));
-            this.userRoleId = FormatUtils.formatInteger(results.getObject("web_user.user_role_id"));
-            this.userRoleType = FormatUtils.formatString(results.getObject("user_role_type"));
+            this.recipeId = FormatUtils.formatInteger(results.getObject("recipe_id"));
+            this.recipeName = FormatUtils.formatString(results.getObject("recipe_name"));
+            this.url = FormatUtils.formatString(results.getObject("url"));
+            this.category = FormatUtils.formatDate(results.getObject("category"));
+            this.prepTime = FormatUtils.formatDollar(results.getObject("prep_time"));
+            this.cookTime = FormatUtils.formatString(results.getObject("cook_time"));
+            this.totalTime = FormatUtils.formatInteger(results.getObject("total_time"));
+            this.servingCount = FormatUtils.formatString(results.getObject("serving_count"));
         } catch (Exception e) {
-            this.errorMsg = "Exception thrown in model.webUser.StringData (the constructor that takes a ResultSet): " + e.getMessage();
+            this.errorMsg = "Exception thrown in model.recipe.StringData (the constructor that takes a ResultSet): " + e.getMessage();
         }
     }
 
     public int getCharacterCount() {
-        String s =  this.webUserId + this.userEmail + this.userPassword + this.birthday
-                + this.membershipFee + this.image + this.userRoleId + this.userRoleType;
+        String s =  this.recipeId + this.recipeName + this.url + this.category
+                + this.prepTime + this.cookTime + this.totalTime + this.servingCount;
         return s.length();
     }
 
     public String toString() {
-        return "Web User Id: " + this.webUserId
-                + ", User Email: " + this.userEmail
-                + ", User Password: " + this.userPassword
-                + ", Birthday: " + this.birthday
-                + ", Membership Fee: " + this.membershipFee
-                + ", Image: " + this.image
-                + ", User Role Id: " + this.userRoleId
-                + ", User Role Type: " + this.userRoleType;
+        return "Recipe Id: " + this.recipeId
+                + ", Recipe Name: " + this.recipeName
+                + ", url: " + this.url
+                + ", Category: " + this.category
+                + ", Prep Time: " + this.prepTime
+                + ", Cook Time: " + this.cookTime
+                + ", Total Time: " + this.totalTime
+                + ", Serving Count: " + this.servingCount;
     }
 }

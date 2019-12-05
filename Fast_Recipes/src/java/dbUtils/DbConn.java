@@ -2,6 +2,7 @@ package dbUtils;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.util.Properties;
 
 /**
  * Wrapper class for database connection. Constructor opens connection. Close
@@ -13,24 +14,31 @@ public class DbConn {
     private java.sql.Connection conn = null;
 
     public DbConn() {
-        
-        String dbAndPass = "fast_recipes?user=charles2";
+        String DB_URL = "jdbc:mysql://localhost:3306/fast_recipes";
+        String User = "root";
+        String Password = "password";
 
         try {
             String DRIVER = "com.mysql.jdbc.Driver";
             Class.forName(DRIVER);
             try {
                 // Assume you are running from home using tunneling...
-                String url = "jdbc:mysql://localhost:3306/"+dbAndPass + "characterEncoding=latin1&useConfigs=maxPerformance";
-
-                this.conn = DriverManager.getConnection(url);
+                String url = "jdbc:mysql://localhost:3306/fast_recipes";
+                Properties prop = new Properties();
+                prop.setProperty("user", "root");
+                prop.setProperty("password", "password");
+                prop.setProperty("characterEncoding", "latin1");
+                prop.setProperty("useConfigs", "maxPerformance");
+                this.conn = DriverManager.getConnection(url, prop);
 
             } catch (Exception e) { // cant get the connection
                 recordError("Problem getting connection:" + e.getMessage());
+                
             }
         } catch (Exception e) { // cant get the driver...
             recordError("Problem getting driver:" + e.getMessage());
         }
+        //System.out.println("Finished the connection");
     } // method
 
     private void recordError(String errorMsg) {
