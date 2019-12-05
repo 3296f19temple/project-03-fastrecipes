@@ -10,18 +10,23 @@
     // default constructor creates nice empty StringDataList with all fields "" (empty string, nothing null).
     StringDataList list = new StringDataList();
 
-    String searchId = request.getParameter("URLid");
+    String searchId = request.getParameter("recipeName");
     if (searchId == null) {
-        list.dbError = "Cannot search for user - 'URLid' most be supplied";
+        list.dbError = "Cannot search for user - 'recipeName' most be supplied";
     } else {
 
-        DbConn dbc = new DbConn();
-        list.dbError = dbc.getErr(); // returns "" if connection is good, else db error msg.
+        //DbConn dbc = new DbConn();
+        //list.dbError = dbc.getErr(); // returns "" if connection is good, else db error msg.
+        
+    System.out.println("*** Ready to get Db Connection.");
+    DbConn dbc = new DbConn();
+    list.dbError = dbc.getErr(); // returns "" if connection is good, else db error msg.
+    System.out.println("*** Db Error is this (empty string means all good): " + dbc.getErr());
 
         if (list.dbError.length() == 0) { // if got good DB connection,
 
             System.out.println("*** Ready to call allUsersAPI");
-            list = DbMods.findById(dbc, searchId);  
+            list = DbMods.findByName(dbc, searchId);  
         }
 
         dbc.close(); // EVERY code path that opens a db connection, must also close it - no DB Conn leaks.

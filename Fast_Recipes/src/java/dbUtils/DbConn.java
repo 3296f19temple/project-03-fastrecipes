@@ -29,6 +29,7 @@ public class DbConn {
                 prop.setProperty("password", "password");
                 prop.setProperty("characterEncoding", "latin1");
                 prop.setProperty("useConfigs", "maxPerformance");
+                prop.setProperty("useSSL", "false");
                 this.conn = DriverManager.getConnection(url, prop);
 
             } catch (Exception e) { // cant get the connection

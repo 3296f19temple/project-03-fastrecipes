@@ -86,10 +86,10 @@ function my$(id) {
         var targetDOM = document.getElementById(id);
         targetDOM.innerHTML = "";
 
-        var desiredIngredient = escape(document.getElementById(inputIngredient).value);
+        var desiredName = escape(document.getElementById(inputIngredient).value);
 
         // the JS escape function cleans input so it can be used as a URL paramenter
-        var myUrl = "webAPIs/getRecipeByIngredientAPI.jsp?URLid=" + desiredIngredient;
+        var myUrl = "WebAPIs/getRecipeByIngredientAPI.jsp?recipeName=" + desiredName;
 
         ajax({
             url: myUrl,
@@ -101,6 +101,7 @@ function my$(id) {
             function success(obj) {
 
                 // var obj = JSON.parse(hreq.responseText); // this already done by function ajax...
+                console.log(obj);
                 if (!obj) {
                     targetDOM.innerHTML += "search.findRecipeByIngredient (success private fn): Http Request (from AJAX call) did not parse to an object.";
                     return;
@@ -111,14 +112,15 @@ function my$(id) {
                     return;
                 } 
 
-                else if (obj.webUserList.length === 0 ) {
-                    targetDOM.innerHTML = "No recipe with ingredient " + desiredIngredient + " was found.";
+                else if (obj.RecipeList.length === 0 ) {
+                    targetDOM.innerHTML = "No recipe with name " + desiredName + " was found.";
                 } else {
-                    var msg = "Found Recipe " + obj.recipeList[0].webUserId;
-                    msg += "<br/> &nbsp; Birthday: " +  obj.webUserList[0].birthday;
-                    msg += "<br/> &nbsp; MembershipFee: " +  obj.webUserList[0].membershipFee;
-                    msg += "<br/> &nbsp; User Role: " +  obj.webUserList[0].userRoleId + " " +  obj.webUserList[0].userRoleType;
-                    msg += "<br/> <img src ='" +  obj.webUserList[0].image + "'>";
+                    var msg = "Found Recipe: " + obj.RecipeList[0].recipeName;
+                    msg += "<br/> &nbsp; Category " +  obj.RecipeList[0].category;
+                    msg += "<br/> &nbsp; Cook Time: " +  obj.RecipeList[0].cookTime;
+                    msg += "<br/> &nbsp; Prep Time: " +  obj.RecipeList[0].prepTime;
+                    msg += "<br/> &nbsp; Serving Count: " +  obj.RecipeList[0].servingCount;
+                    msg += "<br/> <img src ='" +  obj.RecipeList[0].url + "'>";
                     targetDOM.innerHTML = msg;  
                 }
 

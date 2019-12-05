@@ -1,0 +1,11 @@
+SMAP
+getRecipeByIngredientAPI_jsp.java
+JSP
+*S JSP
+*F
++ 0 getRecipeByIngredientAPI.jsp
+webAPIs/getRecipeByIngredientAPI.jsp
+*L
+1,8:48
+11,27:58
+*E

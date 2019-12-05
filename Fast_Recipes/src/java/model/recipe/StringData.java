@@ -15,14 +15,14 @@ import java.sql.ResultSet;
  * free access to put data in or take it out. */
 public class StringData {
 
-    public String recipeId = "";
+    //public String recipeId = "";
     public String recipeName = "";
     public String url = "";
     public String category = "";
     public String prepTime = "";
     public String cookTime = "";
-    public String totalTime = "";
     public String servingCount = "";   
+    public String steps = "";
     public String errorMsg = "";
 
     // default constructor leaves all data members with empty string (Nothing null).
@@ -32,33 +32,30 @@ public class StringData {
     // overloaded constructor sets all data members by extracting from resultSet.
     public StringData(ResultSet results) {
         try {
-            this.recipeId = FormatUtils.formatInteger(results.getObject("recipe_id"));
+            //this.recipeId = FormatUtils.formatInteger(results.getObject("recipe_id"));
             this.recipeName = FormatUtils.formatString(results.getObject("recipe_name"));
             this.url = FormatUtils.formatString(results.getObject("url"));
-            this.category = FormatUtils.formatDate(results.getObject("category"));
-            this.prepTime = FormatUtils.formatDollar(results.getObject("prep_time"));
-            this.cookTime = FormatUtils.formatString(results.getObject("cook_time"));
-            this.totalTime = FormatUtils.formatInteger(results.getObject("total_time"));
-            this.servingCount = FormatUtils.formatString(results.getObject("serving_count"));
+            this.category = FormatUtils.formatString(results.getObject("category"));
+            this.prepTime = FormatUtils.formatInteger(results.getObject("prep_time"));
+            this.cookTime = FormatUtils.formatInteger(results.getObject("cook_time"));
+            this.servingCount = FormatUtils.formatInteger(results.getObject("serving_count"));            
         } catch (Exception e) {
             this.errorMsg = "Exception thrown in model.recipe.StringData (the constructor that takes a ResultSet): " + e.getMessage();
         }
     }
 
     public int getCharacterCount() {
-        String s =  this.recipeId + this.recipeName + this.url + this.category
-                + this.prepTime + this.cookTime + this.totalTime + this.servingCount;
+        String s =  this.recipeName + this.url + this.category
+                + this.prepTime + this.cookTime  + this.servingCount;
         return s.length();
     }
 
     public String toString() {
-        return "Recipe Id: " + this.recipeId
-                + ", Recipe Name: " + this.recipeName
+        return " Recipe Name: " + this.recipeName
                 + ", url: " + this.url
                 + ", Category: " + this.category
                 + ", Prep Time: " + this.prepTime
                 + ", Cook Time: " + this.cookTime
-                + ", Total Time: " + this.totalTime
                 + ", Serving Count: " + this.servingCount;
     }
 }
