@@ -1,0 +1,9 @@
+﻿  Fast_Recipes_cmd.cpp
+  Main.cpp
+  Mysql_Connection.cpp
+  py-sql_adapter.cpp
+  webscrape.cpp
+C:\Users\Charles\Documents\NetBeansProjects\project-03-fastrecipes\FastRecipes\webscrape.cpp(73,10): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  Generating Code...
+C:\Users\Charles\Documents\NetBeansProjects\project-03-fastrecipes\FastRecipes\webscrape.cpp(93,10): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  FastRecipes.vcxproj -> C:\Users\Charles\Documents\NetBeansProjects\project-03-fastrecipes\FastRecipes\x64\Debug\FastRecipes.exe
