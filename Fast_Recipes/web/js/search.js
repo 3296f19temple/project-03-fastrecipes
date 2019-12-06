@@ -70,7 +70,7 @@ function my$(id) {
         var content = `
             <div class='search'>
                 <br/>
-                Ingredient <input type="text" id="findIngredient"/>
+                Recipe Name <input type="text" id="findIngredient"/>
                 &nbsp;
                 <input type="button" value="Search" onclick="search.findRecipeByIngredient('findIngredient','msgArea')"/>
                 <br/><br/>
@@ -120,7 +120,7 @@ function my$(id) {
                     msg += "<br/> &nbsp; Cook Time: " +  obj.RecipeList[0].cookTime;
                     msg += "<br/> &nbsp; Prep Time: " +  obj.RecipeList[0].prepTime;
                     msg += "<br/> &nbsp; Serving Count: " +  obj.RecipeList[0].servingCount;
-                    msg += "<br/> <img src ='" +  obj.RecipeList[0].url + "'>";
+                    msg += "<br/> <img src ='" +  obj.RecipeList[0].imageUrl + "'>";
                     targetDOM.innerHTML = msg;  
                 }
 

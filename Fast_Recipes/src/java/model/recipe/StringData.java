@@ -23,6 +23,7 @@ public class StringData {
     public String cookTime = "";
     public String servingCount = "";   
     public String steps = "";
+    public String imageUrl = "";
     public String errorMsg = "";
 
     // default constructor leaves all data members with empty string (Nothing null).
@@ -38,7 +39,8 @@ public class StringData {
             this.category = FormatUtils.formatString(results.getObject("category"));
             this.prepTime = FormatUtils.formatInteger(results.getObject("prep_time"));
             this.cookTime = FormatUtils.formatInteger(results.getObject("cook_time"));
-            this.servingCount = FormatUtils.formatInteger(results.getObject("serving_count"));            
+            this.servingCount = FormatUtils.formatInteger(results.getObject("serving_count")); 
+            this.imageUrl = FormatUtils.formatString(results.getObject("image_url"));
         } catch (Exception e) {
             this.errorMsg = "Exception thrown in model.recipe.StringData (the constructor that takes a ResultSet): " + e.getMessage();
         }
@@ -46,13 +48,15 @@ public class StringData {
 
     public int getCharacterCount() {
         String s =  this.recipeName + this.url + this.category
-                + this.prepTime + this.cookTime  + this.servingCount;
+                + this.prepTime + this.cookTime  + this.servingCount
+                + this.imageUrl;
         return s.length();
     }
 
     public String toString() {
         return " Recipe Name: " + this.recipeName
                 + ", url: " + this.url
+                + ", Image url: " + this.imageUrl
                 + ", Category: " + this.category
                 + ", Prep Time: " + this.prepTime
                 + ", Cook Time: " + this.cookTime
